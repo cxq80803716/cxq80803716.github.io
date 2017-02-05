@@ -6,6 +6,7 @@ define([], function () {
 			var that = this;
 			$.getJSON("/photo/output.json", function (data) {
 				that.render(that.page, data);
+	
 				that.scroll(data);
 			});
 		},
@@ -17,8 +18,8 @@ define([], function () {
 			var html, li = "";
 			for (var i = begin; i < end && i < data.length; i++) {
 				li += '<li><div class="img-box">' +
-					'<a class="img-bg" rel="example_group" href="https://github.com/lwzhang/blog/blob/master/photos/' + data[i] + '?raw=true"></a>' +
-					'<img lazy-src="https://github.com/lwzhang/blog/blob/master/photos/' + data[i] + '?raw=true" />' +
+					'<a class="img-bg" rel="example_group" href="https://github.com/cxq80803716/cxq80803716.github.io/tree/master/photos' + data[i] + '?raw=true"></a>' +
+					'<img lazy-src="https://github.com/cxq80803716/cxq80803716.github.io/tree/master/photos' + data[i] + '?raw=true" />' +
 					'</li>';
 			}
 
