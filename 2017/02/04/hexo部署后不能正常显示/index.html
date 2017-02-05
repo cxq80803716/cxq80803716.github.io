@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="魂魄妖梦的博客">
 <meta property="og:description" content="我们可能会遇到这么一种情况，本地hexo s是正常的，但是hexo g -d部署到服务器后显示出错了解决方法：hexo的_config.yml中有这么两个参数改为:url: http://www.yuming.com/blog/root: /blog">
 <meta property="og:image" content="http://p1.bpimg.com/584434/04e660745558cbf9.jpg">
-<meta property="og:updated_time" content="2017-02-04T16:04:09.773Z">
+<meta property="og:updated_time" content="2017-02-05T06:06:11.682Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="hexo部署后不能正常显示">
 <meta name="twitter:description" content="我们可能会遇到这么一种情况，本地hexo s是正常的，但是hexo g -d部署到服务器后显示出错了解决方法：hexo的_config.yml中有这么两个参数改为:url: http://www.yuming.com/blog/root: /blog">
@@ -185,6 +185,21 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">杂谈</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">github</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -372,6 +387,14 @@
             <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
           </label>
           <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">github</a>
+              </li>
             
             <div class="clearfix"></div>
           </ul>
