@@ -160,7 +160,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/cxq80803716.github.io/2017/02/12/python安装lxml模块失败的解决方法/">python��װlxmlģ��ʧ�ܵĽ�������</a>
+      <a class="article-title" href="/cxq80803716.github.io/2017/02/12/python安装lxml模块失败的解决方法/">python安装lxml模块失败的解决方法</a>
     </h1>
   
 
@@ -173,13 +173,14 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="http://i1.piimg.com/584434/2e008a09270bbf1a.jpg" alt="Markdown"><br>��ǰ�����������������Һܳ�ʱ�䣬�������ǰ�������<br>�ҵĿ���������ecplise+pydev����Ȼimport lxml���򲻻ᱨ��<br>����ecplise�������������ִ����Ǵ��ģ���Ҳ�͵���û���������þͺ�<br>����ͻȻ�볹�׽����������⣬���ǾͶ��ְٶ���<br>������֪���ҵ������취</p>
+        <p><img src="http://i1.piimg.com/584434/2e008a09270bbf1a.jpg" alt="Markdown"><br>以前这个问题就困扰了我很长时间，后面算是半解决了<br>我的开发环境是ecplise+pydev，虽然import lxml程序不会报错<br>但是ecplise总是提醒我这句代码是错的，我也就当做没看到了能用就好<br>今天突然想彻底解决这个问题，于是就动手百度了<br>最后在知乎找到解决办法</p>
 <blockquote>
-<p>���ߣ����<br>���ӣ�<a href="https://www.zhihu.com/question/30047496/answer/69754268" target="_blank" rel="external">https://www.zhihu.com/question/30047496/answer/69754268</a><br>��Դ��֪��</p>
+<p>作者：深海鱼<br>链接：<a href="https://www.zhihu.com/question/30047496/answer/69754268" target="_blank" rel="external">https://www.zhihu.com/question/30047496/answer/69754268</a><br>来源：知乎</p>
 </blockquote>
 <ol>
-<li>��װwheel�����������У�pip install wheel<br>2.��<a href="http://www.lfd.uci.edu/~gohlke/pythonlibs/#lxml" target="_blank" rel="external">����</a>���ض�Ӧ��.whl�ļ���ע�������ļ�����<br>(���ﱾ����һ�㲹�䣬������ô����.whlҪѡ�ĸ��أ����Բο�<a href="http://jingyan.baidu.com/article/ad310e80feaac71849f49e98.html" target="_blank" rel="external">����</a>�����������˿��汾�ķ���)</li>
-<li>����.whl���ڵ��ļ��У�ִ����������ɰ�װpip install ����׺�������ļ���</li>
+<li>安装wheel，命令行运行：pip install wheel</li>
+<li>在<a href="http://www.lfd.uci.edu/~gohlke/pythonlibs/#lxml" target="_blank" rel="external">这里</a>下载对应的.whl文件，注意别改文件名！<br>(这里本人做一点补充，这里这么多个.whl要选哪个呢？可以参考<a href="http://jingyan.baidu.com/article/ad310e80feaac71849f49e98.html" target="_blank" rel="external">这个</a>，里面给出了看版本的方法)</li>
+<li>进入.whl所在的文件夹，执行命令即可完成安装pip install 带后缀的完整文件名</li>
 </ol>
 
       
