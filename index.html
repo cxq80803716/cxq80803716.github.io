@@ -153,6 +153,147 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-本人写的杭电爬虫" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/cxq80803716.github.io/2017/02/14/本人写的杭电爬虫/">����д�ĺ���oj����</a>
+    </h1>
+  
+
+        
+        <a href="/cxq80803716.github.io/2017/02/14/本人写的杭电爬虫/" class="archive-article-date">
+  	<time datetime="2017-02-13T18:48:18.690Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-14</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="http://p1.bpimg.com/584434/a3efee811b3b55fe.jpg" alt="Markdown"><br>������ѧ���棬����1.0�����ڳ�����<br>��ӭ��������<br>��ַ��<a href="https://github.com/cxq80803716/hdu" target="_blank" rel="external">https://github.com/cxq80803716/hdu</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">����</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/cxq80803716.github.io/2017/02/14/本人写的杭电爬虫/">查看全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-如何在github上传项目" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/cxq80803716.github.io/2017/02/14/如何在github上传项目/">如何在github上传项目</a>
+    </h1>
+  
+
+        
+        <a href="/cxq80803716.github.io/2017/02/14/如何在github上传项目/" class="archive-article-date">
+  	<time datetime="2017-02-13T18:32:08.651Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-14</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="http://p1.bpimg.com/584434/3582e0a6701b7dba.jpg" alt="Markdown"><br><strong>【第一步】 创建仓库</strong><br>这一步我想不用多说，直接在github里创建一个代码仓库用来存放项目就可以</p>
+<p><strong>【第二步】 克隆仓库</strong><br>关于这一步，可以选择用github的客户端来clone项目到本地<br>也可以用我们熟悉的Git Bash<br>客户端的做法我就不多说了，下一个就一目了然了<br>来说一说git的操作流程，首先，如果是一个新账号。要将公钥与私钥匹配，这点如果用过github的话都知道，也不多说了<br>输入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssh -T git@github.com</div></pre></td></tr></table></figure></p>
+<p>如果返回successfully就是成功了<br>由于一个账号可以创建多个仓库，因此用来存放开源项目是相当方便的（所以github才是个IT宝地）<br>在我们想要clone的文件夹下进入Git Bash，然后输入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git clone https://github.com/xxxxxx.git</div></pre></td></tr></table></figure></p>
+<p>上面的网址也就是你的仓库地址了，记得加git哦</p>
+<p><strong>【第三步】 上传README.md文件</strong><br>如果文件夹下右README.md文件了跳过这一步<br>创建的流程如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">git init</div><div class="line">touch README.md</div><div class="line">git add README.md</div><div class="line">git commit -m &apos;first_commit&apos;</div><div class="line">git remote add origin https://github.com/xxxx.git</div><div class="line">git push origin master</div></pre></td></tr></table></figure></p>
+<p>这里其实是创建完后顺便发布到github上去了，创建只到add语句</p>
+<p><strong>【第四步】 push文件到github上去</strong><br>代码是：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">git add .（这个命令会把当前路径下的所有文件，添加到待上传的文件列表中。注意add后面有个点，表示全部）</div><div class="line">git commit -m &apos;first_commit&apos;</div><div class="line">git remote add origin https://github.com/xxxx.git</div><div class="line">git push origin master</div></pre></td></tr></table></figure></p>
+<p>如果执行git remote add origin <a href="https://github.com/xxxx.git，出现错误：" target="_blank" rel="external">https://github.com/xxxx.git，出现错误：</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">fatal: remote origin already exists</div></pre></td></tr></table></figure></p>
+<p>则执行以下语句：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git remote rm origin</div></pre></td></tr></table></figure></p>
+<p>再往后执行git remote add origin <a href="https://github.com/xxxx.git" target="_blank" rel="external">https://github.com/xxxx.git</a> 即可。</p>
+<p>在执行git push origin master时，报错：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">error:failed to push som refs to.......</div></pre></td></tr></table></figure></p>
+<p>则执行以下语句：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git pull origin master</div></pre></td></tr></table></figure></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">github</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/cxq80803716.github.io/2017/02/14/如何在github上传项目/">查看全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-使用py2exe将python项目变成可执行exe文件" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -831,6 +972,10 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">����</a>
               </li>
             
             <div class="clearfix"></div>
