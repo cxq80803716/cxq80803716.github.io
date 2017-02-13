@@ -1,1 +1,1 @@
-https://cxq80803716.github.io/cxq80803716.github.io/2017/02/12/python安装lxml模块失败的解决方法/
+https://cxq80803716.github.io/cxq80803716.github.io/2017/02/14/使用py2exe将python项目变成可执行exe文件/
