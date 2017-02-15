@@ -1,1 +1,1 @@
-https://cxq80803716.github.io/cxq80803716.github.io/2017/02/14/本人写的杭电爬虫/
+https://cxq80803716.github.io/cxq80803716.github.io/2017/02/15/用google浏览器爬取JS生成的网页时network的使用/
