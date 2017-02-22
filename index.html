@@ -154,6 +154,91 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-网易云音乐常用API浅析" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/cxq80803716.github.io/2017/02/22/网易云音乐常用API浅析/">网易云音乐常用API浅析</a>
+    </h1>
+  
+
+        
+        <a href="/cxq80803716.github.io/2017/02/22/网易云音乐常用API浅析/" class="archive-article-date">
+  	<time datetime="2017-02-22T05:40:18.681Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-22</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>此文转自 <a href="http://moonlib.com/606.html" target="_blank" rel="external">http://moonlib.com/606.html</a><br>由于本人不会抓客户端的包，多亏了这位dalao的这篇博客才让我成功完成下载网易云歌曲的爬虫</p>
+</blockquote>
+<p>话不多说<br>PC客户端抓包而来</p>
+<p><strong>0.说明</strong><br>关于头部信息<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Cookie: os=pc; deviceId=B55AC773505E5606F9D355A1A15553CE78B89FC7D8CB8A157B84; osver=Microsoft-Windows-8-Professional-build-9200-64bit; appver=1.5.0.75771; usertrack=ezq0alR0yqJMJC0dr9tEAg==; MUSIC_A=088a57b553bd8cef58487f9d01ae</div><div class="line">User-Agent: Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.138 Safari/537.36\r\n</div></pre></td></tr></table></figure></p>
+<p>上面是抓到的信息，其中必要的只有cookie中的appver。而且如果要调用api，必须加上Referer，只要是music.163.com的就可以</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Cookie: appver=1.5.0.75771;</div><div class="line">Referer: http://music.163.com/</div></pre></td></tr></table></figure>
+<p>以上两条即可<br>返回的格式均为json</p>
+<p><strong>1.搜索</strong><br>抓取到的信息如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">Full request URI：http://music.163.com/api/search/pc</div><div class="line">Key: hlpretag</div><div class="line">Value: &lt;span class=&quot;s-fc2&quot;&gt;</div><div class="line">Key: hlposttag</div><div class="line">Value: &lt;/span&gt;</div><div class="line">Key: s</div><div class="line">Value: \345\226\234\346\254\242\344\275\240</div><div class="line">Key: offset</div><div class="line">Value: 0</div><div class="line">Key: total</div><div class="line">Value: true</div><div class="line">Key: limit</div><div class="line">Value: 100</div><div class="line">Key: type</div><div class="line">Value: 1</div></pre></td></tr></table></figure></p>
+<p>URL：<br>    POST <a href="http://music.163.com/api/search/pc" target="_blank" rel="external">http://music.163.com/api/search/pc</a><br>必要参数：<br>    s：搜索的内容<br>    offset：偏移量（分页用）<br>    limit：获取的数量<br>    type：搜索的类型<br>        歌曲 1<br>        专辑 10<br>        歌手 100<br>        歌单 1000<br>        用户 1002<br>        mv 1004<br>        歌词 1006<br>        主播电台 1009</p>
+<p><strong>2.歌曲信息</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Full request URI: http://music.163.com/api/song/detail/?id=28377211&amp;ids=%5B28377211%5D</div></pre></td></tr></table></figure></p>
+<p>URL：<br>    GET  <a href="http://music.163.com/api/song/detail/" target="_blank" rel="external">http://music.163.com/api/song/detail/</a><br>必要参数：<br>    id：歌曲ID<br>    ids：不知道干什么用的，用[]括起来的歌曲ID</p>
+<p><strong>3.歌手专辑</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Full request URI: http://music.163.com/api/artist/albums/166009?id=166009&amp;offset=0&amp;total=true&amp;limit=5</div></pre></td></tr></table></figure></p>
+<p>URL：<br>    GET <a href="http://music.163.com/api/artist/albums/歌手ID" target="_blank" rel="external">http://music.163.com/api/artist/albums/歌手ID</a><br>必要参数：<br>    limit：获取的数量(不知道为什么这个必须加上）</p>
+<p><strong>4.专辑信息</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Full request URI: http://music.163.com/api/album/2457012?ext=true&amp;id=2457012&amp;offset=0&amp;total=true&amp;limit=10</div></pre></td></tr></table></figure></p>
+<p>URL：<br>    GET <a href="http://music.163.com/api/album/专辑ID" target="_blank" rel="external">http://music.163.com/api/album/专辑ID</a></p>
+<p><strong>5.歌单</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Full request URI: http://music.163.com/api/playlist/detail?id=37880978&amp;updateTime=-1</div></pre></td></tr></table></figure></p>
+<p>URL：<br>    GET <a href="http://music.163.com/api/playlist/detail" target="_blank" rel="external">http://music.163.com/api/playlist/detail</a><br>必要参数：<br>    id：歌单ID</p>
+<p><strong>6.歌词</strong><br>URL：<br>    GET <a href="http://music.163.com/api/song/lyric" target="_blank" rel="external">http://music.163.com/api/song/lyric</a><br>必要参数：<br>    id：歌曲ID<br>    lv：值为-1，我猜测应该是判断是否搜索lyric格式<br>    kv：值为-1，这个值貌似并不影响结果，意义不明<br>    tv：值为-1，是否搜索tlyric格式</p>
+<p><strong>7.MV</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Full request URI: http://music.163.com/api/mv/detail?id=319104&amp;type=mp4</div></pre></td></tr></table></figure></p>
+<p>URL：<br>    GET <a href="http://music.163.com/api/mv/detail" target="_blank" rel="external">http://music.163.com/api/mv/detail</a><br>必要参数：<br>    id：mvid<br>    type：值为mp4，视频格式，不清楚还有没有别的格式</p>
+<p>PHP版使用示例:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line">/**</div><div class="line"> * Created by PhpStorm.</div><div class="line"> * User: Moon</div><div class="line"> * Date: 2014/11/26 0026</div><div class="line"> * Time: 2:06</div><div class="line"> */</div><div class="line">function curl_get($url)</div><div class="line">&#123;</div><div class="line">    $refer = &quot;http://music.163.com/&quot;;</div><div class="line">    $header[] = &quot;Cookie: &quot; . &quot;appver=1.5.0.75771;&quot;;</div><div class="line">    $ch = curl_init();</div><div class="line">    curl_setopt($ch, CURLOPT_URL, $url);</div><div class="line">    curl_setopt($ch, CURLOPT_HTTPHEADER, $header);</div><div class="line">    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);</div><div class="line">    curl_setopt($ch, CURLOPT_BINARYTRANSFER, true);</div><div class="line">    curl_setopt($ch, CURLOPT_REFERER, $refer);</div><div class="line">    $output = curl_exec($ch);</div><div class="line">    curl_close($ch);</div><div class="line">    return $output;</div><div class="line">&#125;</div><div class="line"> </div><div class="line">function music_search($word, $type)</div><div class="line">&#123;</div><div class="line">    $url = &quot;http://music.163.com/api/search/pc&quot;;</div><div class="line">    $post_data = array(</div><div class="line">        &apos;s&apos; =&gt; $word,</div><div class="line">        &apos;offset&apos; =&gt; &apos;0&apos;,</div><div class="line">        &apos;limit&apos; =&gt; &apos;20&apos;,</div><div class="line">        &apos;type&apos; =&gt; $type,</div><div class="line">    );</div><div class="line">    $referrer = &quot;http://music.163.com/&quot;;</div><div class="line">    $URL_Info = parse_url($url);</div><div class="line">    $values = [];</div><div class="line">    $result = &apos;&apos;;</div><div class="line">    $request = &apos;&apos;;</div><div class="line">    foreach ($post_data as $key =&gt; $value) &#123;</div><div class="line">        $values[] = &quot;$key=&quot; . urlencode($value);</div><div class="line">    &#125;</div><div class="line">    $data_string = implode(&quot;&amp;&quot;, $values);</div><div class="line">    if (!isset($URL_Info[&quot;port&quot;])) &#123;</div><div class="line">        $URL_Info[&quot;port&quot;] = 80;</div><div class="line">    &#125;</div><div class="line">    $request .= &quot;POST &quot; . $URL_Info[&quot;path&quot;] . &quot; HTTP/1.1\n&quot;;</div><div class="line">    $request .= &quot;Host: &quot; . $URL_Info[&quot;host&quot;] . &quot;\n&quot;;</div><div class="line">    $request .= &quot;Referer: $referrer\n&quot;;</div><div class="line">    $request .= &quot;Content-type: application/x-www-form-urlencoded\n&quot;;</div><div class="line">    $request .= &quot;Content-length: &quot; . strlen($data_string) . &quot;\n&quot;;</div><div class="line">    $request .= &quot;Connection: close\n&quot;;</div><div class="line">    $request .= &quot;Cookie: &quot; . &quot;appver=1.5.0.75771;\n&quot;;</div><div class="line">    $request .= &quot;\n&quot;;</div><div class="line">    $request .= $data_string . &quot;\n&quot;;</div><div class="line">    $fp = fsockopen($URL_Info[&quot;host&quot;], $URL_Info[&quot;port&quot;]);</div><div class="line">    fputs($fp, $request);</div><div class="line">    $i = 1;</div><div class="line">    while (!feof($fp)) &#123;</div><div class="line">        if ($i &gt;= 15) &#123;</div><div class="line">            $result .= fgets($fp);</div><div class="line">        &#125; else &#123;</div><div class="line">            fgets($fp);</div><div class="line">            $i++;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    fclose($fp);</div><div class="line">    return $result;</div><div class="line">&#125;</div><div class="line"> </div><div class="line">function get_music_info($music_id)</div><div class="line">&#123;</div><div class="line">    $url = &quot;http://music.163.com/api/song/detail/?id=&quot; . $music_id . &quot;&amp;ids=%5B&quot; . $music_id . &quot;%5D&quot;;</div><div class="line">    return curl_get($url);</div><div class="line">&#125;</div><div class="line"> </div><div class="line">function get_artist_album($artist_id, $limit)</div><div class="line">&#123;</div><div class="line">    $url = &quot;http://music.163.com/api/artist/albums/&quot; . $artist_id . &quot;?limit=&quot; . $limit;</div><div class="line">    return curl_get($url);</div><div class="line">&#125;</div><div class="line"> </div><div class="line">function get_album_info($album_id)</div><div class="line">&#123;</div><div class="line">    $url = &quot;http://music.163.com/api/album/&quot; . $album_id;</div><div class="line">    return curl_get($url);</div><div class="line">&#125;</div><div class="line"> </div><div class="line">function get_playlist_info($playlist_id)</div><div class="line">&#123;</div><div class="line">    $url = &quot;http://music.163.com/api/playlist/detail?id=&quot; . $playlist_id;</div><div class="line">    return curl_get($url);</div><div class="line">&#125;</div><div class="line"> </div><div class="line">function get_music_lyric($music_id)</div><div class="line">&#123;</div><div class="line">    $url = &quot;http://music.163.com/api/song/lyric?os=pc&amp;id=&quot; . $music_id . &quot;&amp;lv=-1&amp;kv=-1&amp;tv=-1&quot;;</div><div class="line">    return curl_get($url);</div><div class="line">&#125;</div><div class="line"> </div><div class="line">function get_mv_info()</div><div class="line">&#123;</div><div class="line">    $url = &quot;http://music.163.com/api/mv/detail?id=319104&amp;type=mp4&quot;;</div><div class="line">    return curl_get($url);</div><div class="line">&#125;</div><div class="line"> </div><div class="line">#echo music_search(&quot;Moon Without The Stars&quot;, &quot;1&quot;);</div><div class="line">#get_music_info(&quot;28949444&quot;);</div><div class="line">#echo get_artist_album(&quot;166009&quot;, &quot;5&quot;);</div><div class="line">#echo get_album_info(&quot;3021064&quot;);</div><div class="line">#echo get_playlist_info(&quot;22320356&quot;);</div><div class="line">#echo get_music_lyric(&quot;29567020&quot;);</div><div class="line">#echo get_mv_info();</div></pre></td></tr></table></figure></p>
+<p>此文先到这，等到本人学会了如何抓取api再来更新python版的代码。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">爬虫</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/cxq80803716.github.io/2017/02/22/网易云音乐常用API浅析/">查看全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-网易云音乐歌曲爬虫" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -802,85 +887,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/cxq80803716.github.io/2017/02/12/python安装lxml模块失败的解决方法/">查看全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-各种html状态返回代码" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/cxq80803716.github.io/2017/02/12/各种html状态返回代码/">各种html状态返回代码</a>
-    </h1>
-  
-
-        
-        <a href="/cxq80803716.github.io/2017/02/12/各种html状态返回代码/" class="archive-article-date">
-  	<time datetime="2017-02-12T08:46:20.845Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-12</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>作者：La Sha<br>链接：<a href="https://www.zhihu.com/question/20908415/answer/24823723" target="_blank" rel="external">https://www.zhihu.com/question/20908415/answer/24823723</a><br>来源：知乎</p>
-</blockquote>
-<p><strong>http状态返回代码 1xx（临时响应）</strong><br>表示临时响应并需要请求者继续执行操作的状态代码。</p>
-<p><strong>http状态返回代码 2xx （成功）</strong><br>表示成功处理了请求的状态代码。</p>
-<p><strong>http状态返回代码 代码   说明</strong><br>200   （成功）  服务器已成功处理了请求。 通常，这表示服务器提供了请求的网页。<br>201   （已创建）  请求成功并且服务器创建了新的资源。<br>202   （已接受）  服务器已接受请求，但尚未处理。<br>203   （非授权信息）  服务器已成功处理了请求，但返回的信息可能来自另一来源。<br>204   （无内容）  服务器成功处理了请求，但没有返回任何内容。<br>205   （重置内容） 服务器成功处理了请求，但没有返回任何内容。<br>206   （部分内容）  服务器成功处理了部分 GET 请求。</p>
-<p><strong>http状态返回代码 3xx （重定向）</strong><br>表示要完成请求，需要进一步操作。 通常，这些状态代码用来重定向。</p>
-<p><strong>http状态返回代码 代码   说明</strong><br>300   （多种选择）  针对请求，服务器可执行多种操作。 服务器可根据请求者 (user agent) 选择一项操作，或提供操作列表供请求者选择。<br>301   （永久移动）  请求的网页已永久移动到新位置。 服务器返回此响应（对 GET 或 HEAD 请求的响应）时，会自动将请求者转到新位置。<br>302   （临时移动）  服务器目前从不同位置的网页响应请求，但请求者应继续使用原有位置来进行以后的请求。<br>303   （查看其他位置） 请求者应当对不同的位置使用单独的 GET 请求来检索响应时，服务器返回此代码。<br>304   （未修改） 自从上次请求后，请求的网页未修改过。 服务器返回此响应时，不会返回网页内容。<br>305   （使用代理） 请求者只能使用代理访问请求的网页。 如果服务器返回此响应，还表示请求者应使用代理。<br>307   （临时重定向）  服务器目前从不同位置的网页响应请求，但请求者应继续使用原有位置来进行以后的请求。</p>
-<p><strong>http状态返回代码 4xx（请求错误）</strong><br>这些状态代码表示请求可能出错，妨碍了服务器的处理。</p>
-<p><strong>http状态返回代码 代码   说明</strong><br>400   （错误请求） 服务器不理解请求的语法。<br>401   （未授权） 请求要求身份验证。 对于需要登录的网页，服务器可能返回此响应。<br>403   （禁止） 服务器拒绝请求。<br>404   （未找到） 服务器找不到请求的网页。<br>405   （方法禁用） 禁用请求中指定的方法。<br>406   （不接受） 无法使用请求的内容特性响应请求的网页。<br>407   （需要代理授权） 此状态代码与 401（未授权）类似，但指定请求者应当授权使用代理。<br>408   （请求超时）  服务器等候请求时发生超时。<br>409   （冲突）  服务器在完成请求时发生冲突。 服务器必须在响应中包含有关冲突的信息。<br>410   （已删除）  如果请求的资源已永久删除，服务器就会返回此响应。<br>411   （需要有效长度） 服务器不接受不含有效内容长度标头字段的请求。<br>412   （未满足前提条件） 服务器未满足请求者在请求中设置的其中一个前提条件。<br>413   （请求实体过大） 服务器无法处理请求，因为请求实体过大，超出服务器的处理能力。<br>414   （请求的 URI 过长） 请求的 URI（通常为网址）过长，服务器无法处理。<br>415   （不支持的媒体类型） 请求的格式不受请求页面的支持。<br>416   （请求范围不符合要求） 如果页面无法提供请求的范围，则服务器会返回此状态代码。<br>417   （未满足期望值） 服务器未满足”期望”请求标头字段的要求。</p>
-<p><strong>http状态返回代码 5xx（服务器错误）</strong><br>这些状态代码表示服务器在尝试处理请求时发生内部错误。 这些错误可能是服务器本身的错误，而不是请求出错。</p>
-<p><strong>http状态返回代码 代码   说明</strong><br>500   （服务器内部错误）  服务器遇到错误，无法完成请求。<br>501   （尚未实施） 服务器不具备完成请求的功能。 例如，服务器无法识别请求方法时可能会返回此代码。<br>502   （错误网关） 服务器作为网关或代理，从上游服务器收到无效响应。<br>503   （服务不可用） 服务器目前无法使用（由于超载或停机维护）。 通常，这只是暂时状态。<br>504   （网关超时）  服务器作为网关或代理，但是没有及时从上游服务器收到请求。<br>505   （HTTP 版本不受支持） 服务器不支持请求中所用的 HTTP 协议版本。</p>
-<p><strong>一些常见的http状态返回代码为：</strong><br>200 - 服务器成功返回网页<br>404 - 请求的网页不存在<br>503 - 服务不可用</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">爬虫</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">html</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/cxq80803716.github.io/2017/02/12/各种html状态返回代码/">查看全文 >></a>
         </p>
       
 
