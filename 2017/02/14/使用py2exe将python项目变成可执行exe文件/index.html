@@ -22,7 +22,7 @@
 
 安装py2exe1.去官网下载对应的py2exe版本2.下载完后进行安装3.也可以用pip install py2exe进行安装
 在项目文件下建立setup.py在你的项目下新建一个setup.py文件，内容是1234#coding:utf-8fro">
-<meta property="og:updated_time" content="2017-02-13T18:57:40.066Z">
+<meta property="og:updated_time" content="2017-02-23T14:38:43.594Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用py2exe将python项目变成可执行exe文件">
 <meta name="twitter:description" content="写完python程序后,我们想要进行分享，但是,许多人的电脑并没有安装python,那么我们可以用py2exe让python项目生成exe文件.
@@ -190,6 +190,7 @@
 </blockquote>
 <p><strong>安装py2exe</strong><br>1.去<a href="https://sourceforge.net/projects/py2exe/files/py2exe/0.6.9/" target="_blank" rel="external">官网</a>下载对应的py2exe版本<br>2.下载完后进行安装<br>3.也可以用pip install py2exe进行安装</p>
 <p><strong>在项目文件下建立setup.py</strong><br>在你的项目下新建一个setup.py文件，内容是<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">#coding:utf-8</div><div class="line">from distutils.core import setup</div><div class="line">import py2exe</div><div class="line">setup(console=[&quot;main.py&quot;]) #console=&quot;主项目名.py&quot;</div></pre></td></tr></table></figure></p>
+<a id="more"></a>
 <p><strong>生成exe文件</strong></p>
 <ol>
 <li><p>cmd控制台先进入你的项目文件夹下(D:可以进入D盘,cd xxx可以进入xxx文件夹,cd ..可以退出当前文件夹),然后运行</p>

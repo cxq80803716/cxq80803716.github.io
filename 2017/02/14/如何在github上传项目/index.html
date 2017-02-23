@@ -10,20 +10,17 @@
   <link rel="dns-prefetch" href="http://flandre.site">
   <title>如何在github上传项目 | 魂魄妖梦的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="【第一步】 创建仓库这一步我想不用多说，直接在github里创建一个代码仓库用来存放项目就可以
-【第二步】 克隆仓库关于这一步，可以选择用github的客户端来clone项目到本地也可以用我们熟悉的Git Bash客户端的做法我就不多说了，下一个就一目了然了来说一说git的操作流程，首先，如果是一个新账号。要将公钥与私钥匹配，这点如果用过github的话都知道，也不多说了输入1ssh -T git">
+  <meta name="description" content="【第一步】 创建仓库这一步我想不用多说，直接在github里创建一个代码仓库用来存放项目就可以">
 <meta property="og:type" content="article">
 <meta property="og:title" content="如何在github上传项目">
 <meta property="og:url" content="http://flandre.site/2017/02/14/如何在github上传项目/index.html">
 <meta property="og:site_name" content="魂魄妖梦的博客">
-<meta property="og:description" content="【第一步】 创建仓库这一步我想不用多说，直接在github里创建一个代码仓库用来存放项目就可以
-【第二步】 克隆仓库关于这一步，可以选择用github的客户端来clone项目到本地也可以用我们熟悉的Git Bash客户端的做法我就不多说了，下一个就一目了然了来说一说git的操作流程，首先，如果是一个新账号。要将公钥与私钥匹配，这点如果用过github的话都知道，也不多说了输入1ssh -T git">
+<meta property="og:description" content="【第一步】 创建仓库这一步我想不用多说，直接在github里创建一个代码仓库用来存放项目就可以">
 <meta property="og:image" content="http://p1.bpimg.com/584434/3582e0a6701b7dba.jpg">
-<meta property="og:updated_time" content="2017-02-13T18:57:10.735Z">
+<meta property="og:updated_time" content="2017-02-23T14:40:42.506Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="如何在github上传项目">
-<meta name="twitter:description" content="【第一步】 创建仓库这一步我想不用多说，直接在github里创建一个代码仓库用来存放项目就可以
-【第二步】 克隆仓库关于这一步，可以选择用github的客户端来clone项目到本地也可以用我们熟悉的Git Bash客户端的做法我就不多说了，下一个就一目了然了来说一说git的操作流程，首先，如果是一个新账号。要将公钥与私钥匹配，这点如果用过github的话都知道，也不多说了输入1ssh -T git">
+<meta name="twitter:description" content="【第一步】 创建仓库这一步我想不用多说，直接在github里创建一个代码仓库用来存放项目就可以">
 <meta name="twitter:image" content="http://p1.bpimg.com/584434/3582e0a6701b7dba.jpg">
   
     <link rel="alternative" href="/atom.xml" title="魂魄妖梦的博客" type="application/atom+xml">
@@ -181,8 +178,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="http://p1.bpimg.com/584434/3582e0a6701b7dba.jpg" alt="Markdown"><br><strong>【第一步】 创建仓库</strong><br>这一步我想不用多说，直接在github里创建一个代码仓库用来存放项目就可以</p>
-<p><strong>【第二步】 克隆仓库</strong><br>关于这一步，可以选择用github的客户端来clone项目到本地<br>也可以用我们熟悉的Git Bash<br>客户端的做法我就不多说了，下一个就一目了然了<br>来说一说git的操作流程，首先，如果是一个新账号。要将公钥与私钥匹配，这点如果用过github的话都知道，也不多说了<br>输入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssh -T git@github.com</div></pre></td></tr></table></figure></p>
+        <p><img src="http://p1.bpimg.com/584434/3582e0a6701b7dba.jpg" alt="Markdown"><br><strong>【第一步】 创建仓库</strong><br>这一步我想不用多说，直接在github里创建一个代码仓库用来存放项目就可以<br><a id="more"></a><br><strong>【第二步】 克隆仓库</strong><br>关于这一步，可以选择用github的客户端来clone项目到本地<br>也可以用我们熟悉的Git Bash<br>客户端的做法我就不多说了，下一个就一目了然了<br>来说一说git的操作流程，首先，如果是一个新账号。要将公钥与私钥匹配，这点如果用过github的话都知道，也不多说了<br>输入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssh -T git@github.com</div></pre></td></tr></table></figure></p>
 <p>如果返回successfully就是成功了<br>由于一个账号可以创建多个仓库，因此用来存放开源项目是相当方便的（所以github才是个IT宝地）<br>在我们想要clone的文件夹下进入Git Bash，然后输入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git clone https://github.com/xxxxxx.git</div></pre></td></tr></table></figure></p>
 <p>上面的网址也就是你的仓库地址了，记得加git哦</p>
 <p><strong>【第三步】 上传README.md文件</strong><br>如果文件夹下右README.md文件了跳过这一步<br>创建的流程如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">git init</div><div class="line">touch README.md</div><div class="line">git add README.md</div><div class="line">git commit -m &apos;first_commit&apos;</div><div class="line">git remote add origin https://github.com/xxxx.git</div><div class="line">git push origin master</div></pre></td></tr></table></figure></p>

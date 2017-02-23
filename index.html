@@ -175,29 +175,16 @@
     <div class="article-entry" itemprop="articleBody">
       
         <blockquote>
-<p>此文转自 <a href="http://moonlib.com/606.html" target="_blank" rel="external">http://moonlib.com/606.html</a><br>由于本人不会抓客户端的包，多亏了这位dalao的这篇博客才让我成功完成下载网易云歌曲的爬虫</p>
+<p>此文转自 <a href="http://moonlib.com/606.html">http://moonlib.com/606.html</a><br>由于本人不会抓客户端的包，多亏了这位dalao的这篇博客才让我成功完成下载网易云歌曲的爬虫</p>
 </blockquote>
 <p>话不多说<br>PC客户端抓包而来</p>
 <p><strong>0.说明</strong><br>关于头部信息<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Cookie: os=pc; deviceId=B55AC773505E5606F9D355A1A15553CE78B89FC7D8CB8A157B84; osver=Microsoft-Windows-8-Professional-build-9200-64bit; appver=1.5.0.75771; usertrack=ezq0alR0yqJMJC0dr9tEAg==; MUSIC_A=088a57b553bd8cef58487f9d01ae</div><div class="line">User-Agent: Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.138 Safari/537.36\r\n</div></pre></td></tr></table></figure></p>
 <p>上面是抓到的信息，其中必要的只有cookie中的appver。而且如果要调用api，必须加上Referer，只要是music.163.com的就可以</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Cookie: appver=1.5.0.75771;</div><div class="line">Referer: http://music.163.com/</div></pre></td></tr></table></figure>
 <p>以上两条即可<br>返回的格式均为json</p>
-<p><strong>1.搜索</strong><br>抓取到的信息如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">Full request URI：http://music.163.com/api/search/pc</div><div class="line">Key: hlpretag</div><div class="line">Value: &lt;span class=&quot;s-fc2&quot;&gt;</div><div class="line">Key: hlposttag</div><div class="line">Value: &lt;/span&gt;</div><div class="line">Key: s</div><div class="line">Value: \345\226\234\346\254\242\344\275\240</div><div class="line">Key: offset</div><div class="line">Value: 0</div><div class="line">Key: total</div><div class="line">Value: true</div><div class="line">Key: limit</div><div class="line">Value: 100</div><div class="line">Key: type</div><div class="line">Value: 1</div></pre></td></tr></table></figure></p>
-<p>URL：<br>    POST <a href="http://music.163.com/api/search/pc" target="_blank" rel="external">http://music.163.com/api/search/pc</a><br>必要参数：<br>    s：搜索的内容<br>    offset：偏移量（分页用）<br>    limit：获取的数量<br>    type：搜索的类型<br>        歌曲 1<br>        专辑 10<br>        歌手 100<br>        歌单 1000<br>        用户 1002<br>        mv 1004<br>        歌词 1006<br>        主播电台 1009</p>
-<p><strong>2.歌曲信息</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Full request URI: http://music.163.com/api/song/detail/?id=28377211&amp;ids=%5B28377211%5D</div></pre></td></tr></table></figure></p>
-<p>URL：<br>    GET  <a href="http://music.163.com/api/song/detail/" target="_blank" rel="external">http://music.163.com/api/song/detail/</a><br>必要参数：<br>    id：歌曲ID<br>    ids：不知道干什么用的，用[]括起来的歌曲ID</p>
-<p><strong>3.歌手专辑</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Full request URI: http://music.163.com/api/artist/albums/166009?id=166009&amp;offset=0&amp;total=true&amp;limit=5</div></pre></td></tr></table></figure></p>
-<p>URL：<br>    GET <a href="http://music.163.com/api/artist/albums/歌手ID" target="_blank" rel="external">http://music.163.com/api/artist/albums/歌手ID</a><br>必要参数：<br>    limit：获取的数量(不知道为什么这个必须加上）</p>
-<p><strong>4.专辑信息</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Full request URI: http://music.163.com/api/album/2457012?ext=true&amp;id=2457012&amp;offset=0&amp;total=true&amp;limit=10</div></pre></td></tr></table></figure></p>
-<p>URL：<br>    GET <a href="http://music.163.com/api/album/专辑ID" target="_blank" rel="external">http://music.163.com/api/album/专辑ID</a></p>
-<p><strong>5.歌单</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Full request URI: http://music.163.com/api/playlist/detail?id=37880978&amp;updateTime=-1</div></pre></td></tr></table></figure></p>
-<p>URL：<br>    GET <a href="http://music.163.com/api/playlist/detail" target="_blank" rel="external">http://music.163.com/api/playlist/detail</a><br>必要参数：<br>    id：歌单ID</p>
-<p><strong>6.歌词</strong><br>URL：<br>    GET <a href="http://music.163.com/api/song/lyric" target="_blank" rel="external">http://music.163.com/api/song/lyric</a><br>必要参数：<br>    id：歌曲ID<br>    lv：值为-1，我猜测应该是判断是否搜索lyric格式<br>    kv：值为-1，这个值貌似并不影响结果，意义不明<br>    tv：值为-1，是否搜索tlyric格式</p>
-<p><strong>7.MV</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Full request URI: http://music.163.com/api/mv/detail?id=319104&amp;type=mp4</div></pre></td></tr></table></figure></p>
-<p>URL：<br>    GET <a href="http://music.163.com/api/mv/detail" target="_blank" rel="external">http://music.163.com/api/mv/detail</a><br>必要参数：<br>    id：mvid<br>    type：值为mp4，视频格式，不清楚还有没有别的格式</p>
-<p>PHP版使用示例:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line">/**</div><div class="line"> * Created by PhpStorm.</div><div class="line"> * User: Moon</div><div class="line"> * Date: 2014/11/26 0026</div><div class="line"> * Time: 2:06</div><div class="line"> */</div><div class="line">function curl_get($url)</div><div class="line">&#123;</div><div class="line">    $refer = &quot;http://music.163.com/&quot;;</div><div class="line">    $header[] = &quot;Cookie: &quot; . &quot;appver=1.5.0.75771;&quot;;</div><div class="line">    $ch = curl_init();</div><div class="line">    curl_setopt($ch, CURLOPT_URL, $url);</div><div class="line">    curl_setopt($ch, CURLOPT_HTTPHEADER, $header);</div><div class="line">    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);</div><div class="line">    curl_setopt($ch, CURLOPT_BINARYTRANSFER, true);</div><div class="line">    curl_setopt($ch, CURLOPT_REFERER, $refer);</div><div class="line">    $output = curl_exec($ch);</div><div class="line">    curl_close($ch);</div><div class="line">    return $output;</div><div class="line">&#125;</div><div class="line"> </div><div class="line">function music_search($word, $type)</div><div class="line">&#123;</div><div class="line">    $url = &quot;http://music.163.com/api/search/pc&quot;;</div><div class="line">    $post_data = array(</div><div class="line">        &apos;s&apos; =&gt; $word,</div><div class="line">        &apos;offset&apos; =&gt; &apos;0&apos;,</div><div class="line">        &apos;limit&apos; =&gt; &apos;20&apos;,</div><div class="line">        &apos;type&apos; =&gt; $type,</div><div class="line">    );</div><div class="line">    $referrer = &quot;http://music.163.com/&quot;;</div><div class="line">    $URL_Info = parse_url($url);</div><div class="line">    $values = [];</div><div class="line">    $result = &apos;&apos;;</div><div class="line">    $request = &apos;&apos;;</div><div class="line">    foreach ($post_data as $key =&gt; $value) &#123;</div><div class="line">        $values[] = &quot;$key=&quot; . urlencode($value);</div><div class="line">    &#125;</div><div class="line">    $data_string = implode(&quot;&amp;&quot;, $values);</div><div class="line">    if (!isset($URL_Info[&quot;port&quot;])) &#123;</div><div class="line">        $URL_Info[&quot;port&quot;] = 80;</div><div class="line">    &#125;</div><div class="line">    $request .= &quot;POST &quot; . $URL_Info[&quot;path&quot;] . &quot; HTTP/1.1\n&quot;;</div><div class="line">    $request .= &quot;Host: &quot; . $URL_Info[&quot;host&quot;] . &quot;\n&quot;;</div><div class="line">    $request .= &quot;Referer: $referrer\n&quot;;</div><div class="line">    $request .= &quot;Content-type: application/x-www-form-urlencoded\n&quot;;</div><div class="line">    $request .= &quot;Content-length: &quot; . strlen($data_string) . &quot;\n&quot;;</div><div class="line">    $request .= &quot;Connection: close\n&quot;;</div><div class="line">    $request .= &quot;Cookie: &quot; . &quot;appver=1.5.0.75771;\n&quot;;</div><div class="line">    $request .= &quot;\n&quot;;</div><div class="line">    $request .= $data_string . &quot;\n&quot;;</div><div class="line">    $fp = fsockopen($URL_Info[&quot;host&quot;], $URL_Info[&quot;port&quot;]);</div><div class="line">    fputs($fp, $request);</div><div class="line">    $i = 1;</div><div class="line">    while (!feof($fp)) &#123;</div><div class="line">        if ($i &gt;= 15) &#123;</div><div class="line">            $result .= fgets($fp);</div><div class="line">        &#125; else &#123;</div><div class="line">            fgets($fp);</div><div class="line">            $i++;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    fclose($fp);</div><div class="line">    return $result;</div><div class="line">&#125;</div><div class="line"> </div><div class="line">function get_music_info($music_id)</div><div class="line">&#123;</div><div class="line">    $url = &quot;http://music.163.com/api/song/detail/?id=&quot; . $music_id . &quot;&amp;ids=%5B&quot; . $music_id . &quot;%5D&quot;;</div><div class="line">    return curl_get($url);</div><div class="line">&#125;</div><div class="line"> </div><div class="line">function get_artist_album($artist_id, $limit)</div><div class="line">&#123;</div><div class="line">    $url = &quot;http://music.163.com/api/artist/albums/&quot; . $artist_id . &quot;?limit=&quot; . $limit;</div><div class="line">    return curl_get($url);</div><div class="line">&#125;</div><div class="line"> </div><div class="line">function get_album_info($album_id)</div><div class="line">&#123;</div><div class="line">    $url = &quot;http://music.163.com/api/album/&quot; . $album_id;</div><div class="line">    return curl_get($url);</div><div class="line">&#125;</div><div class="line"> </div><div class="line">function get_playlist_info($playlist_id)</div><div class="line">&#123;</div><div class="line">    $url = &quot;http://music.163.com/api/playlist/detail?id=&quot; . $playlist_id;</div><div class="line">    return curl_get($url);</div><div class="line">&#125;</div><div class="line"> </div><div class="line">function get_music_lyric($music_id)</div><div class="line">&#123;</div><div class="line">    $url = &quot;http://music.163.com/api/song/lyric?os=pc&amp;id=&quot; . $music_id . &quot;&amp;lv=-1&amp;kv=-1&amp;tv=-1&quot;;</div><div class="line">    return curl_get($url);</div><div class="line">&#125;</div><div class="line"> </div><div class="line">function get_mv_info()</div><div class="line">&#123;</div><div class="line">    $url = &quot;http://music.163.com/api/mv/detail?id=319104&amp;type=mp4&quot;;</div><div class="line">    return curl_get($url);</div><div class="line">&#125;</div><div class="line"> </div><div class="line">#echo music_search(&quot;Moon Without The Stars&quot;, &quot;1&quot;);</div><div class="line">#get_music_info(&quot;28949444&quot;);</div><div class="line">#echo get_artist_album(&quot;166009&quot;, &quot;5&quot;);</div><div class="line">#echo get_album_info(&quot;3021064&quot;);</div><div class="line">#echo get_playlist_info(&quot;22320356&quot;);</div><div class="line">#echo get_music_lyric(&quot;29567020&quot;);</div><div class="line">#echo get_mv_info();</div></pre></td></tr></table></figure></p>
-<p>此文先到这，等到本人学会了如何抓取api再来更新python版的代码。</p>
-
+        
+          <a class="article-more-a" href="/cxq80803716.github.io/2017/02/22/网易云音乐常用API浅析/#more">more >></a>
+        
       
 
       
@@ -259,7 +246,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="http://pic.027cgb.cn/20170201/20172227501170870172.jpg" alt=""><br>关于网易云音乐的爬虫（如果以后还有会继续更新此博客）</p>
+        <p><img src="http://p1.bpimg.com/584434/104c579a96f82f64.jpg" alt="Markdown"><br>关于网易云音乐的爬虫（如果以后还有会继续更新此博客）</p>
 <ol>
 <li>爬网易云音乐某个歌单的全部歌曲的全部热门评论，内容保存在D:\comment</li>
 <li>爬网易云音乐某个歌单的全部歌曲，内容保存在D:\music（极少部分歌曲可能无法下载成功，本人试验了几个歌单，基本超过90%的歌曲能下下来）</li>
@@ -333,11 +320,10 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>1.你需要一个谷歌浏览器</p>
-<p>2.用谷歌浏览器进网易云音乐网页版，搜索你想要下载的歌曲<br><img src="http://pic.027cgb.cn/20170206/20172214691597117142.jpg" alt=""></p>
-<p>3.按下F12，选Network，在下面再选XHR<br><img src="http://pic.027cgb.cn/20170206/2017221922864110810.jpg" alt=""></p>
-<p>4.找一下有没有url开头的文件，如果没有就按一下播放按钮，就会出来一个url开头的文件，点一下，再点Preview，复制url的内容<br><img src="http://pic.027cgb.cn/20170206/2017221204646408393.jpg" alt=""></p>
-<p>5.进入这个url的网址，再点击下载就可以直接下了<br><img src="http://pic.027cgb.cn/20170206/2017221219295036502.jpg" alt=""></p>
-
+<p>2.用谷歌浏览器进网易云音乐网页版，搜索你想要下载的歌曲<br><img src="http://i1.piimg.com/584434/72eb4ff796e60f2a.jpg" alt="Markdown"><br>
+        
+          <a class="article-more-a" href="/cxq80803716.github.io/2017/02/21/网易云音乐免费下载付费歌曲的办法/#more">more >></a>
+        
       
 
       
@@ -536,7 +522,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <blockquote>
-<p>本文转自这位dalao的博客<br><a href="https://yoghurt-lee.github.io/2017/02/14/google-network/" target="_blank" rel="external">https://yoghurt-lee.github.io/2017/02/14/google-network/</a></p>
+<p>本文转自这位dalao的博客<br><a href="https://yoghurt-lee.github.io/2017/02/14/google-network/">https://yoghurt-lee.github.io/2017/02/14/google-network/</a></p>
 </blockquote>
 <p><strong>如何使用network</strong></p>
 <ol>
@@ -545,19 +531,9 @@
 <li>下图所显示的也就是我们所抓到的包了,一般在ALL里面找数据,但是如果想看其余的信息,比如js,则可以看点击相应的元素.<br><img src="http://p1.bqimg.com/584434/918ce79716a01590.png" alt="Markdown"></li>
 <li>以上是network的基本应用,下面说如何查看包中数据.</li>
 </ol>
-<p><strong>network中数据包怎么看</strong></p>
-<ol>
-<li><p>静态网页中的数据一般很容易找到,但是如果是js生成的数据,那么在网页的源代码中是无法看到的,比如说这个网站,<br>我们需要这个表格的信息(图一).但是我们在源代码中只能看到如下信息(图二).<br><img src="http://p1.bqimg.com/584434/e1cd1cbf3635e5fa.png" alt="Markdown"><br>(图一)<br><img src="http://p1.bqimg.com/584434/f3d4de75f5ebc2a5.png" alt="Markdown"><br>(图二)</p>
-</li>
-<li><p>解决方法只有两种,模拟这个网页的js代码生成数据,这不太现实;另一种就是分析包数据包,找到需要的信息.方法如下,<br>在下面的数据包的信息里面点击Preview,就可以看到该数据包所携带的信息,一般都是以json数据(类似于python的dict)的形式储存在里面.<br><img src="http://p1.bqimg.com/584434/06c179c0479f2fc4.png" alt="Markdown"></p>
-</li>
-<li><p>OK,找到了数据,接下来就是怎么获得这些数据了.接下来点击该数据包的Headers,看如下信息:<br>我们发现了该数据源的url,发现了该网页是以post方法进行访问的.既然是post,那么下面应该会有数据,我们接着往下看.<br><img src="http://p1.bqimg.com/584434/34ba9b969dcd3ea0.png" alt="Markdown"></p>
-</li>
-<li><p>翻到了下面,果然访问该数据源是要携带数据的,我们只要利用这些数据,就可以顺利获得该数据源的信息了.<br><img src="http://p1.bqimg.com/584434/d4cd95feb84559c9.png" alt="Markdown"></p>
-</li>
-</ol>
-<p><strong>以下是python实现爬取这些数据的一般模板代码</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">import cookielib</div><div class="line">import json</div><div class="line">import urllib2</div><div class="line">import urllib</div><div class="line">#获得一个cookieJar实例</div><div class="line">cj = cookielib.CookieJar()</div><div class="line">#cookieJar作为参数，获得一个opener的实例</div><div class="line">opener=urllib2.build_opener(urllib2.HTTPCookieProcessor(cj))</div><div class="line">#伪装成一个正常的浏览器，避免有些web服务器拒绝访问。</div><div class="line">opener.addheaders = [(&apos;User-agent&apos;,&apos;Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1)&apos;)]</div><div class="line">#需要访问数据源Headers中的的url</div><div class="line">url = &quot;XXXXXXXXX&quot;</div><div class="line">#最下面需要提交的数据,以键值对进行储存</div><div class="line">submit_data = urllib.urlencode(&#123;&quot;xxx&quot;:&quot;XXX&quot;,&quot;yyy&quot;:&quot;YYY&quot;&#125;)</div><div class="line">#以post的方法访问登陆页面，访问之后cookieJar会自定保存cookie</div><div class="line">op = opener.open(url,submit_data)</div><div class="line">#读取获得的数据源</div><div class="line">data = op.read()</div><div class="line">#解析成json数据,接下来就可以直接以键值对的方式访问数据源了</div><div class="line">data = json.loads(data)</div></pre></td></tr></table></figure></p>
-
+        
+          <a class="article-more-a" href="/cxq80803716.github.io/2017/02/15/用google浏览器爬取JS生成的网页时network的使用/#more">more >></a>
+        
       
 
       
@@ -697,19 +673,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="http://p1.bpimg.com/584434/3582e0a6701b7dba.jpg" alt="Markdown"><br><strong>【第一步】 创建仓库</strong><br>这一步我想不用多说，直接在github里创建一个代码仓库用来存放项目就可以</p>
-<p><strong>【第二步】 克隆仓库</strong><br>关于这一步，可以选择用github的客户端来clone项目到本地<br>也可以用我们熟悉的Git Bash<br>客户端的做法我就不多说了，下一个就一目了然了<br>来说一说git的操作流程，首先，如果是一个新账号。要将公钥与私钥匹配，这点如果用过github的话都知道，也不多说了<br>输入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssh -T git@github.com</div></pre></td></tr></table></figure></p>
-<p>如果返回successfully就是成功了<br>由于一个账号可以创建多个仓库，因此用来存放开源项目是相当方便的（所以github才是个IT宝地）<br>在我们想要clone的文件夹下进入Git Bash，然后输入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git clone https://github.com/xxxxxx.git</div></pre></td></tr></table></figure></p>
-<p>上面的网址也就是你的仓库地址了，记得加git哦</p>
-<p><strong>【第三步】 上传README.md文件</strong><br>如果文件夹下右README.md文件了跳过这一步<br>创建的流程如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">git init</div><div class="line">touch README.md</div><div class="line">git add README.md</div><div class="line">git commit -m &apos;first_commit&apos;</div><div class="line">git remote add origin https://github.com/xxxx.git</div><div class="line">git push origin master</div></pre></td></tr></table></figure></p>
-<p>这里其实是创建完后顺便发布到github上去了，创建只到add语句</p>
-<p><strong>【第四步】 push文件到github上去</strong><br>代码是：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">git add .（这个命令会把当前路径下的所有文件，添加到待上传的文件列表中。注意add后面有个点，表示全部）</div><div class="line">git commit -m &apos;first_commit&apos;</div><div class="line">git remote add origin https://github.com/xxxx.git</div><div class="line">git push origin master</div></pre></td></tr></table></figure></p>
-<p>如果执行git remote add origin <a href="https://github.com/xxxx.git，出现错误：" target="_blank" rel="external">https://github.com/xxxx.git，出现错误：</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">fatal: remote origin already exists</div></pre></td></tr></table></figure></p>
-<p>则执行以下语句：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git remote rm origin</div></pre></td></tr></table></figure></p>
-<p>再往后执行git remote add origin <a href="https://github.com/xxxx.git" target="_blank" rel="external">https://github.com/xxxx.git</a> 即可。</p>
-<p>在执行git push origin master时，报错：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">error:failed to push som refs to.......</div></pre></td></tr></table></figure></p>
-<p>则执行以下语句：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git pull origin master</div></pre></td></tr></table></figure></p>
-
+        <p><img src="http://p1.bpimg.com/584434/3582e0a6701b7dba.jpg" alt="Markdown"><br><strong>【第一步】 创建仓库</strong><br>这一步我想不用多说，直接在github里创建一个代码仓库用来存放项目就可以<br>
+        
+          <a class="article-more-a" href="/cxq80803716.github.io/2017/02/14/如何在github上传项目/#more">more >></a>
+        
       
 
       
@@ -774,25 +741,11 @@
         <blockquote>
 <p>写完python程序后,我们想要进行分享，但是,许多人的电脑并没有安装python,<br>那么我们可以用py2exe让python项目生成exe文件.</p>
 </blockquote>
-<p><strong>安装py2exe</strong><br>1.去<a href="https://sourceforge.net/projects/py2exe/files/py2exe/0.6.9/" target="_blank" rel="external">官网</a>下载对应的py2exe版本<br>2.下载完后进行安装<br>3.也可以用pip install py2exe进行安装</p>
+<p><strong>安装py2exe</strong><br>1.去<a href="https://sourceforge.net/projects/py2exe/files/py2exe/0.6.9/">官网</a>下载对应的py2exe版本<br>2.下载完后进行安装<br>3.也可以用pip install py2exe进行安装</p>
 <p><strong>在项目文件下建立setup.py</strong><br>在你的项目下新建一个setup.py文件，内容是<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">#coding:utf-8</div><div class="line">from distutils.core import setup</div><div class="line">import py2exe</div><div class="line">setup(console=[&quot;main.py&quot;]) #console=&quot;主项目名.py&quot;</div></pre></td></tr></table></figure></p>
-<p><strong>生成exe文件</strong></p>
-<ol>
-<li><p>cmd控制台先进入你的项目文件夹下(D:可以进入D盘,cd xxx可以进入xxx文件夹,cd ..可以退出当前文件夹),然后运行</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">python setup.py py2exe</div></pre></td></tr></table></figure>
-</li>
-<li><p>如果你的项目中有第三方库,那么生成的exe文件可能会出现闪退现象,我们需要运行如下命令将第三方库和exe文件链接起来:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">python setup.py py2exe -p 第三方库的名字</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>3.比如我写的一个项目，需要<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">python setup.py py2exe -p lxml,gzip</div></pre></td></tr></table></figure></p>
-<blockquote>
-<p>注意<br>不能生成完exe文件再导入库<br>直接导入库就可以了，这里的导入包含了生成exe文件</p>
-</blockquote>
-<p><strong>你可能会遇到一些编码问题</strong><br>我就是main.py在控制台运行没问题，但是生成exe文件后运行就报某条语句编码错误。<br>比如我有一条代码是：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">postdata = urllib.urlencode(postdata)</div></pre></td></tr></table></figure></p>
-<p>就会报超过了ascll表，可能是因为程序默认是ascll。所以出现中文啥的就要报错,改为<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">postdata = urllib.urlencode(postdata,&apos;utf-8&apos;)</div></pre></td></tr></table></figure></p>
-<p>后问题解决</p>
-
+        
+          <a class="article-more-a" href="/cxq80803716.github.io/2017/02/14/使用py2exe将python项目变成可执行exe文件/#more">more >></a>
+        
       
 
       
