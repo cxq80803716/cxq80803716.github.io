@@ -8,19 +8,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://flandre.site">
-  <title>pygame模块一览 | 魂魄妖梦的博客</title>
+  <title>pygame | 魂魄妖梦的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="忙于准备考研，每天中午学习一下pygame(或者spider)">
+  <meta name="description" content="忙于准备考研，每天中午学习一下pygame">
 <meta property="og:type" content="article">
-<meta property="og:title" content="pygame模块一览">
+<meta property="og:title" content="pygame">
 <meta property="og:url" content="http://flandre.site/2017/03/03/pygame模块一览/index.html">
 <meta property="og:site_name" content="魂魄妖梦的博客">
-<meta property="og:description" content="忙于准备考研，每天中午学习一下pygame(或者spider)">
+<meta property="og:description" content="忙于准备考研，每天中午学习一下pygame">
 <meta property="og:image" content="http://i1.piimg.com/584434/69c037e438416a1b.gif">
-<meta property="og:updated_time" content="2017-03-03T05:16:40.012Z">
+<meta property="og:updated_time" content="2017-03-04T04:31:32.953Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="pygame模块一览">
-<meta name="twitter:description" content="忙于准备考研，每天中午学习一下pygame(或者spider)">
+<meta name="twitter:title" content="pygame">
+<meta name="twitter:description" content="忙于准备考研，每天中午学习一下pygame">
 <meta name="twitter:image" content="http://i1.piimg.com/584434/69c037e438416a1b.gif">
   
     <link rel="alternative" href="/atom.xml" title="魂魄妖梦的博客" type="application/atom+xml">
@@ -165,7 +165,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      pygame模块一览
+      pygame
     </h1>
   
 
@@ -179,7 +179,8 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p><img src="http://i1.piimg.com/584434/69c037e438416a1b.gif" alt="Markdown"></p>
-<p>忙于准备考研，每天中午学习一下pygame(或者spider)<br><a id="more"></a></p>
+<p>忙于准备考研，每天中午学习一下pygame<br><a id="more"></a></p>
+<p>各个模块</p>
 <table>
 <thead>
 <tr>
@@ -275,6 +276,130 @@
 <tr>
 <td>pygame.transform</td>
 <td>缩放和移动图像</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<p>创建窗口时的标志</p>
+<table>
+<thead>
+<tr>
+<th>标志位</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FULLSCREEN</td>
+<td>创建一个全屏窗口</td>
+</tr>
+<tr>
+<td>DOUBLEBUF</td>
+<td>创建一个“双缓冲”窗口，建议在HWSURFACE或者OPENGL时使用</td>
+</tr>
+<tr>
+<td>HWSURFACE</td>
+<td>创建一个硬件加速的窗口，必须和FULLSCREEN同时使用</td>
+</tr>
+<tr>
+<td>OPENGL</td>
+<td>创建一个OPENGL渲染的窗口</td>
+</tr>
+<tr>
+<td>RESIZABLE</td>
+<td>创建一个可以改变大小的窗口</td>
+</tr>
+<tr>
+<td>NOFRAME</td>
+<td>创建一个没有边框的窗口</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<p>常用事件集</p>
+<table>
+<thead>
+<tr>
+<th>事件</th>
+<th>产生途径</th>
+<th>参数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>QUIT</td>
+<td>用户按下关闭按钮</td>
+<td>none</td>
+</tr>
+<tr>
+<td>ATIVEEVENT</td>
+<td>Pygame被激活或者隐藏</td>
+<td>gain, state</td>
+</tr>
+<tr>
+<td>KEYDOWN</td>
+<td>键盘被按下</td>
+<td>unicode, key, mod</td>
+</tr>
+<tr>
+<td>KEYUP</td>
+<td>键盘被放开</td>
+<td>key, mod</td>
+</tr>
+<tr>
+<td>MOUSEMOTION</td>
+<td>鼠标移动</td>
+<td>pos, rel, buttons</td>
+</tr>
+<tr>
+<td>MOUSEBUTTONDOWN</td>
+<td>鼠标按下</td>
+<td>pos, button</td>
+</tr>
+<tr>
+<td>MOUSEBUTTONUP</td>
+<td>鼠标放开</td>
+<td>pos, button</td>
+</tr>
+<tr>
+<td>JOYAXISMOTION</td>
+<td>游戏手柄(Joystick or pad)移动</td>
+<td>joy, axis, value</td>
+</tr>
+<tr>
+<td>JOYBALLMOTION</td>
+<td>游戏球(Joy ball)?移动</td>
+<td>joy, axis, value</td>
+</tr>
+<tr>
+<td>JOYHATMOTION</td>
+<td>游戏手柄(Joystick)?移动</td>
+<td>joy, axis, value</td>
+</tr>
+<tr>
+<td>JOYBUTTONDOWN</td>
+<td>游戏手柄按下</td>
+<td>joy, button</td>
+</tr>
+<tr>
+<td>JOYBUTTONUP</td>
+<td>游戏手柄放开</td>
+<td>joy, button</td>
+</tr>
+<tr>
+<td>VIDEORESIZE    Pygame</td>
+<td>窗口缩放</td>
+<td>size, w, h</td>
+</tr>
+<tr>
+<td>VIDEOEXPOSE    Pygame</td>
+<td>窗口部分公开(expose)?</td>
+<td>none</td>
+</tr>
+<tr>
+<td>USEREVENT</td>
+<td>触发了一个用户事件</td>
+<td>code</td>
 </tr>
 </tbody>
 </table>
@@ -381,7 +506,7 @@
   
   <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="pygame模块一览" data-title="pygame模块一览" data-url="http://flandre.site/cxq80803716.github.io/2017/03/03/pygame模块一览/"></div>
+	<div class="ds-thread" data-thread-key="pygame模块一览" data-title="pygame" data-url="http://flandre.site/cxq80803716.github.io/2017/03/03/pygame模块一览/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
