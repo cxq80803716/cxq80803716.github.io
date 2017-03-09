@@ -17,7 +17,7 @@
 <meta property="og:site_name" content="魂魄妖梦的博客">
 <meta property="og:description" content="忙于准备考研，每天中午学习一下pygame">
 <meta property="og:image" content="http://i1.piimg.com/584434/69c037e438416a1b.gif">
-<meta property="og:updated_time" content="2017-03-04T05:53:01.501Z">
+<meta property="og:updated_time" content="2017-03-09T05:07:36.074Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="pygame">
 <meta name="twitter:description" content="忙于准备考研，每天中午学习一下pygame">
@@ -421,6 +421,9 @@
 <li>mod – 包含了组合键信息，如果mod &amp; KMOD_CTRL是真的话，表示用户同时按下了Ctrl键。类似的还有KMOD_SHIFT，KMOD_ALT。</li>
 <li>unicode – 代表了按下键的Unicode值，这个有点不好理解，真正说清楚又太麻烦，游戏中也不太常用，说明暂时省略，什么时候需要再讲吧。</li>
 </ol>
+<p><strong>我们使用pygame.event.set_blocked(事件名)来完成过滤。如果有好多事件需要过滤，可以传递一个列表，<br>比如pygame.event.set_blocked([KEYDOWN, KEYUP])，如果你设置参数None，那么所有的事件都被打开了。<br>与之相对的，我们使用pygame.event.set_allowed()来设定允许的事件。</strong></p>
+<p><strong>总结一下pygame.mouse</strong></p>
+<p>pygame.mouse.get_pressed —— 返回按键按下情况，返回的是一元组，分别为(左键, 中键, 右键)，如按下则为True<br>pygame.mouse.get_rel —— 返回相对偏移量，(x方向, y方向)的一元组<br>pygame.mouse.get_pos —— 返回当前鼠标位置(x, y)<br>pygame.mouse.set_pos —— 显而易见，设置鼠标位置<br>pygame.mouse.set_visible —— 设置鼠标光标是否可见<br>pygame.mouse.get_focused —— 如果鼠标在pygame窗口内有效，返回True<br>pygame.mouse.set_cursor —— 设置鼠标的默认光标式样，是不是感觉我们以前做的事情白费了？哦不会，我们使用的方法有着更好的效果。<br>pyGame.mouse.get_cursor —— 不再解释。</p>
 
       
 
