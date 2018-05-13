@@ -20,7 +20,7 @@
 <meta property="og:image" content="http://m.qpic.cn/psb?/V12lJDVc4FAi6h/onW5HyhJj2YgDfbQyLm.svBHmmz4Ejs9ovf3gTl0sgg!/b/dDEBAAAAAAAA&bo=rQIxAAAAAAARF74!&rf=viewer_4">
 <meta property="og:image" content="http://m.qpic.cn/psb?/V12lJDVc4FAi6h/yFnJmbAt*sIP2Nr.YlD6VrODzHei4agfUs2QT8yCx1A!/b/dDEBAAAAAAAA&bo=JAPFAQAAAAARB9M!&rf=viewer_4">
 <meta property="og:image" content="http://m.qpic.cn/psb?/V12lJDVc4FAi6h/bVhNNiBFKmSgURQKPQb91GRxtgiICxntLfRNOAIwJVY!/b/dJEAAAAAAAAA&bo=yAQYA8gEGAMRGS4!&rf=viewer_4">
-<meta property="og:updated_time" content="2018-05-13T10:14:12.114Z">
+<meta property="og:updated_time" content="2018-05-13T14:33:00.812Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【机器学习实战】第二章 k近邻算法">
 <meta name="twitter:image" content="http://m.qpic.cn/psb?/V12lJDVc4FAi6h/tnN2l5CIPzuzJ9ieBzHxU8X9HGoJISTBDsiXtpQDcJA!/b/dAgBAAAAAAAA&bo=fAJJAwAAAAARBwQ!&rf=viewer_4">
@@ -182,7 +182,7 @@
       
         <p><img src="http://m.qpic.cn/psb?/V12lJDVc4FAi6h/tnN2l5CIPzuzJ9ieBzHxU8X9HGoJISTBDsiXtpQDcJA!/b/dAgBAAAAAAAA&amp;bo=fAJJAwAAAAARBwQ!&amp;rf=viewer_4" alt="image"><br><a id="more"></a></p>
 <blockquote>
-<p>序言<br>马上就要毕业了，研究生的方向是机器学习和深度学习<br>最近开始学习机器学习，刷完吴恩达的视频后想着应该拿本实战书练手<br>理论+实践才能出真知<br>然后就开始啃这本书，现在看了三章，感觉这本书写的还是相当不错的，简单易懂，能实现一些基本的功能<br>本人的环境是Anaconda3.5，实际运行过程中发现书中不少代码需要小改动，所以如果我的代码和书中不同，也是正常的<br>注意：本博客并非完全照抄书上内容（太多了），只是摘选出本人觉得对学习毕竟有用的内容+一点个人的理解+保证代码是可运行的<br>关于该书的源代码和数据集： 链接：<a href="https://pan.baidu.com/s/1Xc5DRU-rblSTgnxTRCzUbw" target="_blank" rel="external">点我</a> 密码：rh3a</p>
+<p>序言<br>马上就要毕业了，研究生的方向是机器学习和深度学习<br>最近开始学习机器学习，刷完吴恩达的视频后想着应该拿本实战书练手<br>理论+实践才能出真知<br>然后就开始啃这本书，现在看了三章，感觉这本书写的还是相当不错的，简单易懂，能实现一些基本的功能<br>本人的环境是Anaconda3.5，实际运行过程中发现书中不少代码需要小改动，所以如果我的代码和书中不同，也是正常的<br>注意：本博客并非完全照抄书上内容（太多了），只是摘选出本人觉得对学习比较有用的内容+一点个人的理解，并且保证代码是可运行的<br>关于该书的源代码和数据集： 链接：<a href="https://pan.baidu.com/s/1Xc5DRU-rblSTgnxTRCzUbw" target="_blank" rel="external">点我</a> 密码：rh3a</p>
 </blockquote>
 <hr>
 <p>这篇博客主要介绍的是这本书的第二章: k近邻算法</p>
@@ -221,7 +221,7 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> knn</div><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"><span class="keyword">from</span> os <span class="keyword">import</span> listdir</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">img2vector</span><span class="params">(filename)</span>:</span></div><div class="line">    returnVcet = np.zeros((<span class="number">1</span>,<span class="number">1024</span>))</div><div class="line">    fr = open(filename)</div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">32</span>):</div><div class="line">        line = fr.readline()</div><div class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">32</span>):</div><div class="line">            returnVcet[<span class="number">0</span>,i*<span class="number">32</span>+j] = int(line[j])</div><div class="line">    <span class="keyword">return</span> returnVcet</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">handwritingClassTest</span><span class="params">()</span>:</span></div><div class="line">    hwLabels = []</div><div class="line">    trainingFileList = listdir(<span class="string">'digits/trainingDigits'</span>)<span class="comment">#获取该文件夹下的所有文件名字</span></div><div class="line">    m = len(trainingFileList)</div><div class="line">    trainingMat = np.zeros((m,<span class="number">1024</span>))</div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(m):</div><div class="line">        fileNameStr = trainingFileList[i]</div><div class="line">        fileStr = fileNameStr.split(<span class="string">'.'</span>)[<span class="number">0</span>]</div><div class="line">        classNumStr = int(fileStr.split(<span class="string">'_'</span>)[<span class="number">0</span>])</div><div class="line">        hwLabels.append(classNumStr)</div><div class="line">        trainingMat[i,:] = img2vector(<span class="string">'digits/trainingDigits/%s'</span> % fileNameStr)</div><div class="line">    testFileList = listdir(<span class="string">'digits/testDigits'</span>)</div><div class="line">    errorCount = <span class="number">0.0</span></div><div class="line">    mTest = len(testFileList)</div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(mTest):</div><div class="line">        fileNameStr = testFileList[i]</div><div class="line">        fileStr = fileNameStr.split(<span class="string">','</span>)[<span class="number">0</span>]</div><div class="line">        classNumStr = int(fileStr.split(<span class="string">'_'</span>)[<span class="number">0</span>])</div><div class="line">        vector = img2vector(<span class="string">'digits/testDigits/%s'</span> % fileNameStr)</div><div class="line">        classifierResult = knn.classify0(vector,trainingMat,hwLabels,<span class="number">3</span>)</div><div class="line">        <span class="keyword">print</span> (<span class="string">"the classifier came back with: %d, the real answei is: %d"</span> % </div><div class="line">               (classifierResult,classNumStr))</div><div class="line">        <span class="keyword">if</span> classifierResult != classNumStr: errorCount += <span class="number">1.0</span></div><div class="line">    <span class="keyword">print</span> (<span class="string">"the total error rate is: %f"</span> % (errorCount/float(mTest)))</div><div class="line"></div><div class="line">handwritingClassTest()</div></pre></td></tr></table></figure>
 </li>
 </ol>
-<p>啊，终于写完了，真累，希望这个系列可以坚持到最后吧（逃<br>感谢观看，最后放张灵梦镇博（笑<br><img src="http://m.qpic.cn/psb?/V12lJDVc4FAi6h/bVhNNiBFKmSgURQKPQb91GRxtgiICxntLfRNOAIwJVY!/b/dJEAAAAAAAAA&amp;bo=yAQYA8gEGAMRGS4!&amp;rf=viewer_4" alt="image"></p>
+<p>后记<br>啊，终于写完了，真累，希望这个系列可以坚持到最后吧（逃<br>感谢观看，最后放张灵梦镇博（笑<br><img src="http://m.qpic.cn/psb?/V12lJDVc4FAi6h/bVhNNiBFKmSgURQKPQb91GRxtgiICxntLfRNOAIwJVY!/b/dJEAAAAAAAAA&amp;bo=yAQYA8gEGAMRGS4!&amp;rf=viewer_4" alt="image"></p>
 
       
 
@@ -308,6 +308,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/cxq80803716.github.io/2018/05/13/【机器学习实战】第三章 决策树/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          【机器学习实战】第三章 决策树
+        
+      </div>
+    </a>
   
   
     <a href="/cxq80803716.github.io/2018/05/12/重新开始更新博客/" id="article-nav-older" class="article-nav-link-wrap">

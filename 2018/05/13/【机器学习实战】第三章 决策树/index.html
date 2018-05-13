@@ -8,14 +8,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://flandre.site">
-  <title>Tag: 机器学习 | 幻想乡</title>
+  <title>【机器学习实战】第三章 决策树 | 幻想乡</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="幻想乡">
-<meta property="og:url" content="http://flandre.site/tags/机器学习/index.html">
+  <meta property="og:type" content="article">
+<meta property="og:title" content="【机器学习实战】第三章 决策树">
+<meta property="og:url" content="http://flandre.site/2018/05/13/【机器学习实战】第三章 决策树/index.html">
 <meta property="og:site_name" content="幻想乡">
+<meta property="og:image" content="http://m.qpic.cn/psb?/V12lJDVc4FAi6h/Hq6zHuKnHJQ7wwHAWqcecwRuOJOXgO*iaj6eI7LIwOY!/b/dDIBAAAAAAAA&bo=0AKAAtACgAIRCT4!&rf=viewer_4">
+<meta property="og:image" content="http://m.qpic.cn/psb?/V12lJDVc4FAi6h/U*ScqN.XjV7cZqPHt51cPgqDNDEsneULoQd6a78f3I8!/b/dIMAAAAAAAAA&bo=xgP8AQAAAAARBwg!&rf=viewer_4">
+<meta property="og:image" content="http://m.qpic.cn/psb?/V12lJDVc4FAi6h/VPgL6a9FO9*Hz4EJI3OexLoCGo9*o2.vs7dFce54WsY!/b/dDEBAAAAAAAA&bo=IgEoAAAAAAARBzs!&rf=viewer_4">
+<meta property="og:image" content="http://m.qpic.cn/psb?/V12lJDVc4FAi6h/lM1rJZE2DuSdQB0S0JE1ejk2*eub18mltLey4nwanBs!/b/dDEBAAAAAAAA&bo=rAFNAAAAAAARF8A!&rf=viewer_4">
+<meta property="og:updated_time" content="2018-05-13T14:51:51.777Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="幻想乡">
+<meta name="twitter:title" content="【机器学习实战】第三章 决策树">
+<meta name="twitter:image" content="http://m.qpic.cn/psb?/V12lJDVc4FAi6h/Hq6zHuKnHJQ7wwHAWqcecwRuOJOXgO*iaj6eI7LIwOY!/b/dDIBAAAAAAAA&bo=0AKAAtACgAIRCT4!&rf=viewer_4">
   
     <link rel="alternative" href="/atom.xml" title="幻想乡" type="application/atom+xml">
   
@@ -152,36 +158,47 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-【机器学习实战】第三章 决策树" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      【机器学习实战】第三章 决策树
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/cxq80803716.github.io/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/cxq80803716.github.io/2018/05/13/【机器学习实战】第三章 决策树/" class="archive-article-date">
+
+        
+        <a href="/cxq80803716.github.io/2018/05/13/【机器学习实战】第三章 决策树/" class="archive-article-date">
   	<time datetime="2018-05-13T13:33:53.940Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-13</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/cxq80803716.github.io/2018/05/13/【机器学习实战】第三章 决策树/">【机器学习实战】第三章 决策树</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="http://m.qpic.cn/psb?/V12lJDVc4FAi6h/Hq6zHuKnHJQ7wwHAWqcecwRuOJOXgO*iaj6eI7LIwOY!/b/dDIBAAAAAAAA&amp;bo=0AKAAtACgAIRCT4!&amp;rf=viewer_4" alt="image"><br><a id="more"></a></p>
+<blockquote>
+<p>序言<br>本人的环境是Anaconda3.5，实际运行过程中发现书中不少代码需要小改动，所以如果我的代码和书中不同，也是正常的<br>注意：本博客并非完全照抄书上内容（太多了），只是摘选出本人觉得对学习比较有用的内容+一点个人的理解，并且保证代码是可运行的<br>关于该书的源代码和数据集： 链接：<a href="https://pan.baidu.com/s/1Xc5DRU-rblSTgnxTRCzUbw" target="_blank" rel="external">点我</a> 密码：rh3a</p>
+</blockquote>
+<hr>
+<p>这篇博客主要介绍的是这本书的第三章: 决策树</p>
+<p>如果你以前没有接触过决策树，完全不用担心，它的概念非常简单。如下图就是一个决策树，分支节点就是决策用的某一个特征值，叶子结点表示已经得出结果。<br><img src="http://m.qpic.cn/psb?/V12lJDVc4FAi6h/U*ScqN.XjV7cZqPHt51cPgqDNDEsneULoQd6a78f3I8!/b/dIMAAAAAAAAA&amp;bo=xgP8AQAAAAARBwg!&amp;rf=viewer_4" alt="iamge"><br>可想而知，当我们构造出这样一颗决策树，对于一个未知结果的输入向量，能够很快得到预测结果。专家系统中经常使用决策树，而且决策树给出结果往往可以匹敌在当前领域具有几十年工作经验的人类专家。<br>决策树的优点：计算复杂度不高，输出结果易于理解，对中间值的缺失不敏感，可以处理不相关特征数据。<br>缺点：可能会产生过度匹配问题<br>使用数据类型：数值型和标称型</p>
+<p>3.1 决策树的构造<br>在构造决策树时，我们需要解决的第一个问题就是当前数据集上哪个特征在划分数据分类时起决定性作用，也就是说选择这个特征值可以使决策树更小。为了找到决定性的特征，划分出最好的结果，我们必须评估每一个特征。完成测试之后，原始数据集就被划分成几个数据子集。这些数据子集会分布在第一个决策点的所有分支上。<br>如果某个分支下的数据属于同一类型，则当前已经正确划分数据分类；无需进一步对数据集进行分割。如果数据子集内的数据不属于同一类型，则需要重复划分数据子集。划分数据子集的算法和划分原始数据集的方法相同，直到所有具有相同类型的数据均在一个数据子集内。</p>
+<p>3.1.1 信息增益<br>划分数据集的大原则是：将无序的数据变得更加有序。我们可以使用多种方法划分数据集，但是每种方法都有各自的优缺点。组织杂乱无章数据的一种方法就是使用信息论度量信息。<br>在划分数据集之前之后信息发生的变化称为信息增益，知道如何计算信息增益，我们就可以计算每个特征值划分数据集获得的信息增益，获得信息增益最高的特征就是最好的选择。<br>什么是熵？<br>熵定义为信息的期望值，在明晰这个概念之前，我们必须知道信息的定义。如果待分类的事物可能划分在多个分类之中，则符号xi的信息定义为<br><img src="http://m.qpic.cn/psb?/V12lJDVc4FAi6h/VPgL6a9FO9*Hz4EJI3OexLoCGo9*o2.vs7dFce54WsY!/b/dDEBAAAAAAAA&amp;bo=IgEoAAAAAAARBzs!&amp;rf=viewer_4" alt="image"><br>其中p(xi)是选择分类xi的概率，显然信息量的取值范围在(0,+∞)<br>为了计算熵，我们需要计算所有类别所有可能值包含的信息期望值，可以通过下面的公式得到：<br><img src="http://m.qpic.cn/psb?/V12lJDVc4FAi6h/lM1rJZE2DuSdQB0S0JE1ejk2*eub18mltLey4nwanBs!/b/dDEBAAAAAAAA&amp;bo=rAFNAAAAAAARF8A!&amp;rf=viewer_4" alt="image"><br>其中n是分类的数目，从公式可以看出这个信息熵相当于所有分类的期望熵，由此公式我们可以计算给定数据集的熵，代码如下：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> math <span class="keyword">import</span> log</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">calcShannonEnt</span><span class="params">(dataSet)</span>:</span></div><div class="line">    <span class="comment">#计算数据集的香农熵，表征混乱程度</span></div><div class="line">    numEntries = len(dataSet)</div><div class="line">    labelCounts = &#123;&#125;<span class="comment">#该数据集所有分类出现的次数</span></div><div class="line">    <span class="keyword">for</span> featVec <span class="keyword">in</span> dataSet:</div><div class="line">        currentLabel = featVec[<span class="number">-1</span>]</div><div class="line">        <span class="keyword">if</span> currentLabel <span class="keyword">not</span> <span class="keyword">in</span> labelCounts.keys():</div><div class="line">            labelCounts[currentLabel] = <span class="number">0</span></div><div class="line">        labelCounts[currentLabel] += <span class="number">1</span></div><div class="line">    shannonEnt = <span class="number">0.0</span></div><div class="line">    <span class="keyword">for</span> key <span class="keyword">in</span> labelCounts:</div><div class="line">        prob = float(labelCounts[key])/numEntries</div><div class="line">        shannonEnt -= prob * log(prob,<span class="number">2</span>)</div><div class="line">    <span class="keyword">return</span> shannonEnt</div></pre></td></tr></table></figure></p>
+<p>为了测试这个函数的功能，我们可以利用createDataSet()函数得到简单的鱼类鉴定数据集<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">createDataSet</span><span class="params">()</span>:</span></div><div class="line">    <span class="comment">#创建数据集</span></div><div class="line">    dataSet = [[<span class="number">1</span>,<span class="number">1</span>,<span class="string">'yes'</span>],[<span class="number">1</span>,<span class="number">1</span>,<span class="string">'yes'</span>],[<span class="number">1</span>,<span class="number">0</span>,<span class="string">'no'</span>],[<span class="number">0</span>,<span class="number">1</span>,<span class="string">'no'</span>],[<span class="number">0</span>,<span class="number">1</span>,<span class="string">'no'</span>]]</div><div class="line">    labels = [<span class="string">'no surfacing'</span>,<span class="string">'flippers'</span>]<span class="comment">#两个特征的含义</span></div><div class="line">    <span class="keyword">return</span> dataSet,labels</div></pre></td></tr></table></figure></p>
+<p>再输入：<br>myDat,labels = createDataSet()<br>print (myDat)<br>print (calcShannonEnt(myDat))<br>我们可以得到如下结果：<br>[[1, 1, ‘yes’], [1, 1, ‘yes’], [1, 0, ‘no’], [0, 1, ‘no’], [0, 1, ‘no’]]<br>0.9709505944546686<br>熵越高，则混合的数据也越多，数据更加无序。得到熵之后，我们就可以按照获取最大信息增益的方法划分数据集，下一节我们将具体学习如何划分数据集以及如何度量信息增益。</p>
+<p>3.1.2 划分数据集<br>上节我们学习了如何度量数据集的无序程度。我们将对每个特征划分数据集的结果计算一次信息熵，然后判断按照哪个特征划分数据集是最好的划分方式。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">splitDataSet</span><span class="params">(dataSet,axis,value)</span>:</span></div><div class="line">    <span class="comment">#返回第axis个特征为value的的数据集，要去掉第axis个特征</span></div><div class="line">    retDataSet = []</div><div class="line">    <span class="keyword">for</span> featVec <span class="keyword">in</span> dataSet:</div><div class="line">        <span class="keyword">if</span> featVec[axis] == value:</div><div class="line">            reducedFeatVec = featVec[:axis]</div><div class="line">            reducedFeatVec.extend(featVec[axis+<span class="number">1</span>:])</div><div class="line">            retDataSet.append(reducedFeatVec)</div><div class="line">    <span class="keyword">return</span> retDataSet</div></pre></td></tr></table></figure></p>
+<p>以上代码使用了三个输入参数：待划分的数据集、目标特征的下标，目标特征。<br>注意区分append和extend的区别<br>假如a = [1,2,3],b = [4,5,6]则a.append(b)的结果是[1,2,3,[4,5,6]]<br>a.extend(b)的结果是[1,2,3,4,5,6]<br>我们可以在前面的简单样本数据上测试该函数<br>输入:<br>myDat,labels = createDataSet()<br>print (myDat)<br>print (splitDataSet(myDat,0,1))<br>print (splitDataSet(myDat,0,0))<br>我们可以得到：<br>[[1, 1, ‘yes’], [1, 1, ‘yes’], [1, 0, ‘no’], [0, 1, ‘no’], [0, 1, ‘no’]]<br>[[1, ‘yes’], [1, ‘yes’], [0, ‘no’]]<br>[[1, ‘no’], [1, ‘no’]]<br>我们便用第一个特征对原数据集进行了划分，分成了两个子集<br>接下来我们将遍历整个数据集，循环计算香农熵和splitDataSet()函数，找到最好的特征划分方式。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">chooseBestFeatureToSplit</span><span class="params">(dataSet)</span>:</span></div><div class="line">    <span class="comment">#选择当前分类的最佳特征，即信息增益最大的特征</span></div><div class="line">    numFeature = len(dataSet[<span class="number">0</span>]) - <span class="number">1</span></div><div class="line">    baseEntropy = calcShannonEnt(dataSet)</div><div class="line">    bestInfoGain = <span class="number">0.0</span>;bestFeature = <span class="number">-1</span></div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(numFeature):<span class="comment">#遍历所有特征</span></div><div class="line">        featList = [example[i] <span class="keyword">for</span> example <span class="keyword">in</span> dataSet]</div><div class="line">        UniqueFeatList = set(featList)</div><div class="line">        newEntropy = <span class="number">0.0</span></div><div class="line">        <span class="keyword">for</span> value <span class="keyword">in</span> UniqueFeatList:<span class="comment">#遍历该特征的所有取值，求出平均香农熵</span></div><div class="line">            subDataSet = splitDataSet(dataSet,i,value)</div><div class="line">            prob = len(subDataSet) / float(len(dataSet))</div><div class="line">            newEntropy += prob * calcShannonEnt(subDataSet)</div><div class="line">        infoGain = baseEntropy - newEntropy</div><div class="line">        <span class="keyword">if</span> infoGain &gt; bestInfoGain:<span class="comment">#松弛操作</span></div><div class="line">            bestInfoGain = infoGain</div><div class="line">            bestFeature = i</div><div class="line">    <span class="keyword">return</span> bestFeature</div></pre></td></tr></table></figure></p>
 
-        <div class="article-info info-on-right">
-          
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -197,61 +214,107 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://flandre.site/2018/05/13/【机器学习实战】第三章 决策树/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/cxq80803716.github.io/2018/05/13/【机器学习实战】第二章 k近邻算法/" class="archive-article-date">
-  	<time datetime="2018-05-13T07:37:50.550Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-13</time>
-</a>
-        </div>
-    	 
+<nav id="article-nav">
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/cxq80803716.github.io/2018/05/13/【机器学习实战】第二章 k近邻算法/">【机器学习实战】第二章 k近邻算法</a>
-    </h1>
+  
+    <a href="/cxq80803716.github.io/2018/05/13/【机器学习实战】第二章 k近邻算法/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">【机器学习实战】第二章 k近邻算法</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+
+  
+  <div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="【机器学习实战】第三章 决策树" data-title="【机器学习实战】第三章 决策树" data-url="http://flandre.site/cxq80803716.github.io/2018/05/13/【机器学习实战】第三章 决策树/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"cxq80803716"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">机器学习实战</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">机器学习</a>
-        		</li>
-      		
-		</ul>
-	</div>
 
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -274,9 +337,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		root: "/cxq80803716.github.io/",
