@@ -255,17 +255,15 @@
 <script>
    var notify = 'false' == true ? true : false;
    var verify = 'false' == true ? true : false;
-    window.onload = function() {
-        new Valine({
-            el: '.comment',
-            notify: notify,
-            verify: verify,
-            app_id: "bNzBAs8NTpPc1AbEMumgFhaa-gzGzoHsz",
-            app_key: "bXYhGN0lEcQKoQCgJyRYFytr",
-            placeholder: "瞎白话",
-            avatar:""
-        });
-    }
+	new Valine({
+		el: '#vcomment',
+		notify: notify,
+		verify: verify,
+		app_id: "bNzBAs8NTpPc1AbEMumgFhaa-gzGzoHsz",
+		app_key: "bXYhGN0lEcQKoQCgJyRYFytr",
+		placeholder: "瞎白话",
+		avatar:""
+	});
 </script>
     </section>
   
