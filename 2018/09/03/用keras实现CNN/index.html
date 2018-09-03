@@ -8,14 +8,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://flandre.site">
-  <title>Tag: markdown | 幻想乡</title>
+  <title>用keras实现CNN | 幻想乡</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="幻想乡">
-<meta property="og:url" content="http://flandre.site/tags/markdown/index.html">
+  <meta property="og:type" content="article">
+<meta property="og:title" content="用keras实现CNN">
+<meta property="og:url" content="http://flandre.site/2018/09/03/用keras实现CNN/index.html">
 <meta property="og:site_name" content="幻想乡">
+<meta property="og:image" content="http://flandre.site/cxq80803716.github.io/2018/09/03/用keras实现CNN/1.jpg">
+<meta property="og:updated_time" content="2018-09-03T07:34:50.248Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="幻想乡">
+<meta name="twitter:title" content="用keras实现CNN">
+<meta name="twitter:image" content="http://flandre.site/cxq80803716.github.io/2018/09/03/用keras实现CNN/1.jpg">
   
     <link rel="alternative" href="/atom.xml" title="幻想乡" type="application/atom+xml">
   
@@ -152,60 +155,165 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-用keras实现CNN" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/cxq80803716.github.io/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/cxq80803716.github.io/2017/12/29/解决markdown无法显示本地图片的办法/" class="archive-article-date">
-  	<time datetime="2017-12-29T12:16:31.598Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-29</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/cxq80803716.github.io/2017/12/29/解决markdown无法显示本地图片的办法/">解决markdown无法显示本地图片的办法</a>
+    <h1 class="article-title" itemprop="name">
+      用keras实现CNN
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/cxq80803716.github.io/2018/09/03/用keras实现CNN/" class="archive-article-date">
+  	<time datetime="2018-09-03T06:40:43.768Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-03</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="/cxq80803716.github.io/2018/09/03/用keras实现CNN/1.jpg" alt="image"><br><a id="more"></a></p>
+<blockquote>
+<p>序言<br>现在实现CNN主要采用tensorflow，但是由于tensorflow的不易上手性，所以为了更方便入门，本文采用keras实现一个CNN模型。<br>基于被广泛使用的公共数据集mnist，实现手写数字识别。</p>
+</blockquote>
+<hr>
+<p>我会将代码分成几部分，对每部分进行讲解，最后会附上完整代码。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">from keras.datasets import mnist</div><div class="line">import matplotlib.pyplot as plt</div><div class="line">import random</div><div class="line">import numpy as np</div><div class="line">from keras.models import Sequential</div><div class="line">from keras.layers import Dense,Conv2D,MaxPool2D,Flatten,Dropout</div><div class="line">from keras.utils import np_utils</div></pre></td></tr></table></figure></p>
+<p>这部分主要包含了模型所需要的头文件。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">(X_train,y_train),(X_test,y_test) = mnist.load_data()</div><div class="line">n_train,n_test = X_train.shape[0],X_test.shape[0]</div><div class="line">X_train = X_train.reshape(X_train.shape[0],28,28,1).astype(&apos;float32&apos;)</div><div class="line">X_test = X_test.reshape(X_test.shape[0],28,28,1).astype(&apos;float32&apos;)</div><div class="line">X_train = X_train / 255</div><div class="line">X_test = X_test / 255</div><div class="line">y_train = np_utils.to_categorical(y_train)</div><div class="line">y_test = np_utils.to_categorical(y_test)</div></pre></td></tr></table></figure>
+<p>首先载入mnist数据集，注意得到的X_train是(60000,28,28)的图片，X_test是(1000,28,28)的图片，y_train和y_test是(60000,1)的标签(代表手写数字0-9)。然后将X转换一下维度，变成四维矩阵，最后一位代表了颜色，并且进行归一化。由于我们使用的CNN最后输出需要经过softmax，所以将y进行ont-hot操作。<br>所谓ont-hot指的是把一个确定的类别转化成多个类别，但是只有一个类别是1，其他都是0。比如这个例子里一共有10个类别，有一个样本的y是3，那么转化之后就变成[0,0,0,1,0,0,0,0,0,0]。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">def model_init():</div><div class="line">    model = Sequential()</div><div class="line">    model.add(Conv2D(filters= 16, kernel_size=(5,5), padding=&apos;Same&apos;, input_shape=(28,28,1), activation=&apos;relu&apos;))</div><div class="line">    model.add(MaxPool2D(pool_size=(2,2)))</div><div class="line">    model.add(Conv2D(filters= 36, kernel_size=(3,3), padding=&apos;Same&apos;, activation=&apos;relu&apos;))</div><div class="line">    model.add(MaxPool2D(pool_size=(2,2), strides=(2,2)))</div><div class="line">    model.add(Dropout(0.25))</div><div class="line">    model.add(Flatten())</div><div class="line">    model.add(Dense(128, activation=&apos;relu&apos;))</div><div class="line">    model.add(Dense(10, activation=&apos;softmax&apos;))</div><div class="line">    print (model.summary())</div><div class="line">    return model</div><div class="line">	</div><div class="line">model = model_init()</div><div class="line">model.compile(optimizer=&apos;adam&apos;,</div><div class="line">              loss=&apos;categorical_crossentropy&apos;,</div><div class="line">              metrics=[&apos;accuracy&apos;])</div><div class="line"></div><div class="line">model.fit(X_train, y_train, epochs=5, batch_size=256,</div><div class="line">          validation_split=0.2)</div></pre></td></tr></table></figure>
+<p>处理好数据，就该进行建模了。keras的建模非常简单，如同model_init函数所示。<br>keras的model分为两种，一种是Sequential，一种是Model。使用的比较多的是前者，表示之后所有的层都是顺序连接的，即只要使用add方法即可；后者操作比较自由，可以构建多分支的神经网络，比如可以用在多标签分类问题中。<br>Conv2D(filters= 16, kernel_size=(5,5), padding=’Same’, input_shape=(28,28,1), activation=’relu’)建立了一个卷积层，其中的卷积核(滤波器)数量是16;一个卷积核的大小是5<em>5;padding有两种模式，’Same’指的是在不足以覆盖卷积核时，自动补充0边界;activation代表了激活函数，CNN中一般使用ReLU<br>MaxPool2D(pool_size=(2,2))建立了一个池化层，池化核的大小是2</em>2<br>Dropout(0.25)用来按照一定概率去除神经元，防止过拟合<br>Flatten()用来过渡卷积层和全连接层，将多维的神经元平铺成一维<br>Dense(128, activation=’relu’)建立了一个全连接层，包含128个神经元，激活函数是ReLU<br>model.summary()可以输出所建立的model的结构<br>初始化model后，再对其进行编译，添加优化器，损失函数，评价指标。 注意添加优化器时默认学习率是0.01，也可以对其初值进行修改，甚至可以利用回调函数进行动态修改（比如验证集上准确率连续两次没有上升则降低学习率）。<br>然后就可以开始训练模型了，传入训练集的输入和输出，epochs表示迭代几次，迭代一次会遍历整个训练集；batch_size可以设置一批的数据大小，注意我们训练数据时是按照一批一批数据训练的；validation_split表示划分多大的验证集，这里是0.2，即60000*0.2=12000条数据。那么训练集就是48000条数据。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">def evaluate(model,X_test,y_test):</div><div class="line">    result = model.evaluate(np.array(X_test).reshape(len(X_test),28,28,1), y_test, batch_size=32)</div><div class="line">    return result</div><div class="line">	</div><div class="line">print (evaluate(model,X_test,y_test))</div></pre></td></tr></table></figure></p>
+<p>用测试集对模型进行评估，返回result包括两个值，一个是loss，另一个是metrics</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">index = random.randint(0, n_test-1)</div><div class="line">y_pred = model.predict(X_test[index].reshape(1,28,28,1))</div><div class="line">plt.title(&apos;real: %s\npred:%s&apos;%(np.argmax(y_test[index]), np.argmax(y_pred)))</div><div class="line">plt.imshow(X_test[index,:,:,0], cmap=&apos;gray&apos;)</div><div class="line">plt.axis(&apos;off&apos;)</div><div class="line">model.save(&apos;single_mnist_model.h5&apos;)</div></pre></td></tr></table></figure>
+<p>从测试集中随机抽一个数字，显示数字，预测结果和真正结果。</p>
+<p>完整代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div></pre></td><td class="code"><pre><div class="line">from keras.datasets import mnist</div><div class="line">import matplotlib.pyplot as plt</div><div class="line">import random</div><div class="line">import numpy as np</div><div class="line">from keras.models import Sequential</div><div class="line">from keras.layers import Dense,Conv2D,MaxPool2D,Flatten,Dropout</div><div class="line">from keras.utils import np_utils</div><div class="line">#from keras.models import load_model</div><div class="line"></div><div class="line">def model_init():</div><div class="line">    model = Sequential()</div><div class="line">    model.add(Conv2D(filters= 16, kernel_size=(5,5), padding=&apos;Same&apos;, input_shape=(28,28,1), activation=&apos;relu&apos;))</div><div class="line">    model.add(MaxPool2D(pool_size=(2,2)))</div><div class="line">    model.add(Conv2D(filters= 36, kernel_size=(3,3), padding=&apos;Same&apos;, activation=&apos;relu&apos;))</div><div class="line">    model.add(MaxPool2D(pool_size=(2,2), strides=(2,2)))</div><div class="line">    model.add(Dropout(0.25))</div><div class="line">    model.add(Flatten())</div><div class="line">    model.add(Dense(128, activation=&apos;relu&apos;))</div><div class="line">    model.add(Dense(10, activation=&apos;softmax&apos;))</div><div class="line">    print (model.summary())</div><div class="line">    return model</div><div class="line">    </div><div class="line">def evaluate(model,X_test,y_test):</div><div class="line">    # TODO: 按照错一个就算错的规则计算准确率.</div><div class="line">    result = model.evaluate(np.array(X_test).reshape(len(X_test),28,28,1), y_test, batch_size=32)</div><div class="line">    return result</div><div class="line"></div><div class="line"></div><div class="line">(X_train,y_train),(X_test,y_test) = mnist.load_data()</div><div class="line">n_train,n_test = X_train.shape[0],X_test.shape[0]</div><div class="line">X_train = X_train.reshape(X_train.shape[0],28,28,1).astype(&apos;float32&apos;)</div><div class="line">X_test = X_test.reshape(X_test.shape[0],28,28,1).astype(&apos;float32&apos;)</div><div class="line">X_train = X_train / 255</div><div class="line">X_test = X_test / 255</div><div class="line">y_train = np_utils.to_categorical(y_train)</div><div class="line">y_test = np_utils.to_categorical(y_test)</div><div class="line"></div><div class="line">model = model_init()</div><div class="line">model.compile(optimizer=&apos;adam&apos;,</div><div class="line">              loss=&apos;categorical_crossentropy&apos;,</div><div class="line">              metrics=[&apos;accuracy&apos;])</div><div class="line"></div><div class="line">model.fit(X_train, y_train, epochs=5, batch_size=256,</div><div class="line">          validation_split=0.2)</div><div class="line"></div><div class="line">#model = load_model(&apos;single_mnist_model.h5&apos;)</div><div class="line">print (evaluate(model,X_test,y_test))</div><div class="line"></div><div class="line">index = random.randint(0, n_test-1)</div><div class="line">y_pred = model.predict(X_test[index].reshape(1,28,28,1))</div><div class="line"></div><div class="line">plt.title(&apos;real: %s\npred:%s&apos;%(np.argmax(y_test[index]), np.argmax(y_pred)))</div><div class="line">plt.imshow(X_test[index,:,:,0], cmap=&apos;gray&apos;)</div><div class="line">plt.axis(&apos;off&apos;)</div><div class="line"></div><div class="line">model.save(&apos;single_mnist_model.h5&apos;)</div></pre></td></tr></table></figure></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">markdown</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">机器学习</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">keras</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">CNN</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://flandre.site/2018/09/03/用keras实现CNN/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-  
-    </div></section>
-  
 
-    
+  
+<nav id="article-nav">
+  
+  
+    <a href="/cxq80803716.github.io/2018/05/18/【机器学习实战】第五章 逻辑回归/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">【机器学习实战】第五章 逻辑回归</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+
+  
+    <section id="comments" style="margin:10px;padding:10px;background:#fff;">
+      <div id="vcomment" class="comment"></div> 
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+   var notify = 'false' == true ? true : false;
+   var verify = 'false' == true ? true : false;
+	new Valine({
+		el: '#vcomment',
+		notify: notify,
+		verify: verify,
+		app_id: "bNzBAs8NTpPc1AbEMumgFhaa-gzGzoHsz",
+		app_key: "bXYhGN0lEcQKoQCgJyRYFytr",
+		placeholder: "输入点什么吧",
+		avatar:"D:/hexo/themes/yilia/source/img/meihong.jpg"
+	});
+</script>
+    </section>
+  
 
 
           </div>
@@ -228,9 +336,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		root: "/cxq80803716.github.io/",
